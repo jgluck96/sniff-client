@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import base from './base'
 import frag from './frag'
 import addon from './addon'
+import modals from './modals'
 
 export default combineReducers({
   base,
   frag,
-  addon
+  addon,
+  modals
 })
 
 // reducer example:

@@ -37,10 +37,12 @@ class Frag extends Component {
     return(
       <Fragment>
         <div onClick={this.addItem} id={this.props.id.split(' ')[0]} className={this.props.frag1 === this.props.obj.name || this.props.frag2 === this.props.obj.name || this.props.frag3 === this.props.obj.name ? 'custom-select-item chosen' : 'custom-select-item'}>
+          <div className='info-container'><span className='info-select'><span>i</span></span></div>
           <div className='custom-select-item-image'>
             <img className='custom-select-item-image customm' src={this.props.obj.img} alt=''/>
           </div>
-          <p>{this.props.obj.name}</p>
+          <p>{this.props.obj.name}<br/><span className='item-price'>+$1.80</span></p>
+
         </div>
       </Fragment>
     )
