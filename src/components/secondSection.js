@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from 'react'
 // import {connect} from 'react-redux'
-import yellowcurve from '../assets/images/yellowcurve.png'
+// import yellowcurve from '../assets/images/yellowcurve.png'
 import fluff from '../assets/images/fluff-03.svg'
 
-import $ from 'jquery'
+// import $ from 'jquery'
 
 class Second extends Component {
   render(){
@@ -24,15 +24,15 @@ class Second extends Component {
               <div className='second-section-step'>
                 <span>base</span>
               </div>
-              <i class="fas fa-angle-right arrow"></i>
+              <i className="fas fa-angle-right arrow"></i>
               <div className='second-section-step'>
                 <span>Scent</span>
               </div>
-              <i class="fas fa-angle-right arrow"></i>
+              <i className="fas fa-angle-right arrow"></i>
               <div className='second-section-step'>
                 <span>Add-on</span>
               </div>
-              <i class="fas fa-angle-right arrow"></i>
+              <i className="fas fa-angle-right arrow"></i>
               <div className='second-section-step'>
                 <span>Enjoy</span>
               </div>

@@ -20,9 +20,50 @@ export const removeFrag = (selection) => {
     }
 }
 
+export const clearFrags = () => {
+  return {
+    type: 'CLEAR_FRAGS',
+    payload: {}
+    }
+}
+
 export const addAddon = (selection) => {
   return {
     type: 'ADD_ADDON',
     payload: selection
+  }
+}
+
+export const removeAddon = (selection) => {
+  return {
+    type: 'REMOVE_ADDON',
+    payload: selection
+  }
+}
+
+export const addSubtotal = (amount) => {
+  return {
+    type: 'ADD_SUBTOTAL',
+    payload: amount
+  }
+}
+export const clearSubtotal = (amount) => {
+  return {
+    type: 'CLEAR_SUBTOTAL',
+    payload: amount
+  }
+}
+
+export const removeSubtotal = (amount) => {
+  return {
+    type: 'REMOVE_SUBTOTAL',
+    payload: amount
+  }
+}
+
+export const addToCart = (cartItems) => {
+  return {
+    type: 'ADD_TO_CART',
+    payload: cartItems
   }
 }

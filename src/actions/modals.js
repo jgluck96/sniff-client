@@ -13,6 +13,13 @@ export const openSignup = () => {
     }
 }
 
+export const openMinibag = () => {
+  return {
+    type: 'OPEN_MINIBAG',
+    payload: true
+    }
+}
+
 
 export const closeModal = () => {
   return {

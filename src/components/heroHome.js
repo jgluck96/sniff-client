@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 // import {connect} from 'react-redux'
-import soap from '../assets/images/soap.png'
+// import soap from '../assets/images/soap.png'
 
-import $ from 'jquery'
+// import $ from 'jquery'
 
 class Hero extends Component {
   render(){

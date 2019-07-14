@@ -5,11 +5,21 @@ import Home from './pages/home'
 import Customize from './pages/customize'
 import Login from './pages/login'
 import Signup from './pages/signup'
+import Checkout from './pages/checkout'
+import MiniBag from './components/miniBag'
 import Nav from './components/nav'
 import Footer from './components/footer'
 import {connect} from 'react-redux'
+import $ from 'jquery'
 
 class App extends Component {
+
+  componentDidUpdate(prevState) {
+    if (prevState.login !== this.props.login) {
+      setTimeout(() => $('.modal').addClass('drop'),0)
+    }
+  }
+
   render(){
     return (
       <React.Fragment>
@@ -17,6 +27,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/customize' component={Customize} />
+          <Route path='/checkout/sniffBag' component={Checkout} />
         </Switch>
         {
           this.props.login ?
@@ -24,6 +35,9 @@ class App extends Component {
           :
           this.props.signup ?
           <Signup />
+          :
+          this.props.miniBag ?
+          <MiniBag />
           :
           null
         }
@@ -33,10 +47,10 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     login: state.modals.login,
-    signup: state.modals.signup
+    signup: state.modals.signup,
+    miniBag: state.modals.miniBag
   }
 }
 

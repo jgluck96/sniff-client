@@ -33,6 +33,8 @@ export default (state={}, action) => {
       // const deletionFrag3 = delete state['frag3']
       delete newState['frag3']
       return Object.assign({}, newState)
+    case 'CLEAR_FRAGS':
+      return {}
 
     default:
       return state

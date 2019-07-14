@@ -1,14 +1,23 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
-import {addAddon} from '../actions/selections'
-import $ from 'jquery'
+import {addAddon, removeAddon, removeSubtotal, addSubtotal} from '../actions/selections'
+// import $ from 'jquery'
 
 class Addon extends Component {
 
   addItem = () => {
-    const selection = {addon: true, name: this.props.id, img: this.props.obj.img}
-    this.props.addAddon(selection)
-    $(`#${this.props.id.split(' ')[0]}`).toggleClass('chosen')
+    const selection = {addon: true, name: this.props.id, img: this.props.obj.img, price: 1}
+
+    if (this.props.addon.name === this.props.id) {
+      this.props.removeAddon(selection)
+      this.props.removeSubtotal(1.00)
+    } else if (this.props.addon.name !== this.props.id && this.props.addon.name){
+        this.props.addAddon(selection)
+    } else {
+        this.props.addAddon(selection)
+        this.props.addSubtotal(1.00)
+    }
+    // $(`#${this.props.id.split(' ')[0]}`).toggleClass('chosen')
 
   }
 
@@ -35,4 +44,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {addAddon})(Addon)
+export default connect(mapStateToProps, {addAddon, removeAddon, removeSubtotal, addSubtotal})(Addon)

@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import Coupon from '../components/coupon'
 import Cart from '../components/cart'
 import logo from '../assets/images/snifflogo.png'
+import $ from 'jquery'
 
 class Nav extends Component {
 
@@ -25,32 +26,44 @@ class Nav extends Component {
         <Coupon />
           <nav className='navbar fixed-top'>
             <div className='container-fluid'>
+            <div className='logo'>
+                <NavLink className='' to='/'>
+                  <img style={{height: '80px'}} src={logo} alt=''/>
+                </NavLink>
+                <div className='nav-log' onClick={this.openLoginModel}>
+                  <div className='nav-link login-signup'>
+                    login
+                  </div>
+                  <span style={{marginRight: '8px', marginLeft: '8px'}}>or</span>
+                  <div className='nav-link login-signup'>
+                    sign up
+                  </div>
+                </div>
+            </div>
+
               <ul className='navbar-nav'>
-                <li className='nav-item non-cart'>
-                  <NavLink className='nav-link' to='/'>
-                    HOME
+
+                <li className='nav-item'>
+                  <NavLink className='nav-link non-cart' to='/'>
+                    Home
                   </NavLink>
                 </li>
-                <li className='nav-item non-cart'>
-                    <NavLink className='nav-link' to='/customize'>
-                      CUSTOMIZE
-                    </NavLink>
+                <li className='nav-item'>
+                  <div className='nav-link non-cart'>
+                    <span>About</span><i style={{fontSize: '14px'}} className="fas fa-caret-down"></i>
+                  </div>
                 </li>
-                <li className='nav-item logo'>
-                  <NavLink className='nav-link' to='/'>
-                    <img style={{height: '80px'}} src={logo} alt=''/>
+                <li className='nav-item'>
+                  <NavLink className='nav-link non-cart' to='/customize'>
+                    Customize
                   </NavLink>
                 </li>
-                <li className='nav-item non-cart' onClick={this.openSignupModel}>
-                  <div className='nav-link'>
-                    SIGNUP
-                  </div>
+                <li className='nav-item'>
+                  <NavLink className='nav-link cart-container' to='/checkout/sniffBag'>
+                    <Cart />
+                  </NavLink>
                 </li>
-                <li className='nav-item' onClick={this.openSignupModel}>
-                  <div className='nav-link cart-container'>
-                  <Cart />
-                  </div>
-                </li>
+
               </ul>
             </div>
           </nav>

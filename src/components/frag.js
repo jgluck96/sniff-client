@@ -1,33 +1,29 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
-import {addFrag, removeFrag} from '../actions/selections'
+import {addFrag, removeFrag, addSubtotal, removeSubtotal} from '../actions/selections'
 import $ from 'jquery'
 
 class Frag extends Component {
-  //
-  // state = {
-  //   clicked: false
-  // }
-  //
-  // componentDidMount() {
-  //   for (var frag in this.props.frags) {
-  //     if (frag.name === this.props.obj.name) {
-  //       this.setState({clicked: true})
-  //     }
-  //   }
-  // }
 
   addItem = () => {
+    const selection = {frag: true, name: this.props.id, img: this.props.obj.img, price: 1.80}
+
     if (this.props.obj.name === this.props.frag1) {
       this.props.removeFrag('frag1')
+      this.props.removeSubtotal(1.80)
     } else if (this.props.obj.name === this.props.frag2) {
       this.props.removeFrag('frag2')
+      this.props.removeSubtotal(1.80)
     } else if (this.props.obj.name === this.props.frag3) {
       this.props.removeFrag('frag3')
+      this.props.removeSubtotal(1.80)
+    } else if (this.props.frag3 && this.props.obj.name !== this.props.frag3) {
+
+        this.props.addFrag(selection, Object.keys(this.props.frags).length + 1)
     } else {
-      const selection = {frag: true, name: this.props.id, img: this.props.obj.img}
-      this.props.addFrag(selection, Object.keys(this.props.frags).length + 1)
-      $(`#${this.props.id.split(' ')[0]}`).toggleClass('chosen')
+        this.props.addFrag(selection, Object.keys(this.props.frags).length + 1)
+        this.props.addSubtotal(1.80)
+        $(`#${this.props.id.split(' ')[0]}`).toggleClass('chosen')
 
     }
 
@@ -52,10 +48,10 @@ class Frag extends Component {
 const mapStateToProps = state => {
   return{
     frags: state.frag,
-    frag1: state.frag.frag1 ? state.frag.frag1.name:null,
-    frag2: state.frag.frag2 ? state.frag.frag2.name:null,
-    frag3: state.frag.frag3 ? state.frag.frag3.name:null
+    frag1: state.frag.frag1 ? state.frag.frag1.name:'',
+    frag2: state.frag.frag2 ? state.frag.frag2.name:'',
+    frag3: state.frag.frag3 ? state.frag.frag3.name:''
   }
 }
 
-export default connect(mapStateToProps, {addFrag, removeFrag})(Frag)
+export default connect(mapStateToProps, {addFrag, removeFrag, addSubtotal, removeSubtotal})(Frag)

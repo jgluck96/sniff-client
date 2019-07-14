@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
-import {addBase} from '../actions/selections'
+import {addBase, addSubtotal} from '../actions/selections'
 import $ from 'jquery'
 
 class Base extends Component {
@@ -10,12 +10,15 @@ class Base extends Component {
   }
 
   addItem = () => {
-      const selection = {base: true, name: this.props.id, img: this.props.obj.img}
+      const selection = {base: true, name: this.props.id, img: this.props.obj.img, price: 4}
       this.props.addBase(selection)
+
+      if (!this.props.base.base) {
+        this.props.addSubtotal(4.00)
+      }
   }
 
   render(){
-    console.log('here in render');
     return(
       <Fragment>
 
@@ -44,4 +47,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {addBase})(Base)
+export default connect(mapStateToProps, {addBase, addSubtotal})(Base)
