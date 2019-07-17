@@ -10,13 +10,14 @@ import MiniBag from './components/miniBag'
 import Nav from './components/nav'
 import Footer from './components/footer'
 import {connect} from 'react-redux'
+import {autoLogin} from './actions/users'
 import $ from 'jquery'
 
 class App extends Component {
 
-  componentDidUpdate(prevState) {
-    if (prevState.login !== this.props.login) {
-      setTimeout(() => $('.modal').addClass('drop'),0)
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      this.props.autoLogin()
     }
   }
 
@@ -47,11 +48,13 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     login: state.modals.login,
     signup: state.modals.signup,
-    miniBag: state.modals.miniBag
+    miniBag: state.modals.miniBag,
+    user: state.user
   }
 }
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, {autoLogin})(App);

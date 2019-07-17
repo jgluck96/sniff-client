@@ -1,21 +1,20 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {closeModal} from '../actions/modals'
+import MinibagContainer from '../containers/minibagContainer'
 import $ from 'jquery'
 
-let total;
 class MiniCart extends Component {
 
   componentDidMount() {
     setTimeout(() => $('.mini-bag').addClass('open-minibag'), 0)
   }
 
-  estTotal = () => {
-    let subtotal;
-    for(let i=0; i<this.props.cart.length; i++) {
-      subtotal+=this.props.cart[i].price
-    }
-    return subtotal
+  miniBack = () => {
+    $('.mini-bag').removeClass('open-minibag').delay(500).queue((next) => {
+          this.props.closeModal()
+          next()
+        })
   }
 
   render(){
@@ -24,7 +23,7 @@ class MiniCart extends Component {
         <div className='modal-background' onClick={() => this.props.closeModal()}>
         </div>
         <div className='mini-bag'>
-          <span className='mini-bag-back'>
+          <span className='mini-bag-back' onClick={this.miniBack}>
           </span>
           <div className='mini-bag-top'>
             <div className='mini-bag-title'>
@@ -37,6 +36,7 @@ class MiniCart extends Component {
               <a className='mini-bag-checkout-btn' href='/checkout/sniffBag'><span>Checkout</span></a>
             </div>
           </div>
+          <MinibagContainer />
         </div>
       </Fragment>
     )

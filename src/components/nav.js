@@ -9,6 +9,18 @@ import $ from 'jquery'
 
 class Nav extends Component {
 
+  componentDidMount() {
+    $(document).scroll(function() {
+      if ($(this).scrollTop() > 50) { //Adjust 150
+        $('.navbar').css('height', '55px');
+        $('.logo-img').css('height', '55px');
+      } else {
+        $('.navbar').css('height', '80px');
+        $('.logo-img').css('height', '80px');
+      }
+    });
+  }
+
   openLoginModel = () => {
     this.props.openLogin()
     document.getElementById('root').setAttribute('class', 'modal-overflow')
@@ -28,14 +40,14 @@ class Nav extends Component {
             <div className='container-fluid'>
             <div className='logo'>
                 <NavLink className='' to='/'>
-                  <img style={{height: '80px'}} src={logo} alt=''/>
+                  <img className='logo-img' src={logo} alt=''/>
                 </NavLink>
-                <div className='nav-log' onClick={this.openLoginModel}>
-                  <div className='nav-link login-signup'>
+                <div className='nav-log'>
+                  <div className='nav-link login-signup' onClick={this.openLoginModel}>
                     login
                   </div>
                   <span style={{marginRight: '8px', marginLeft: '8px'}}>or</span>
-                  <div className='nav-link login-signup'>
+                  <div className='nav-link login-signup' onClick={this.openSignupModel}>
                     sign up
                   </div>
                 </div>

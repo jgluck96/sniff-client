@@ -12,29 +12,33 @@ class Second extends Component {
         <img style={{position: 'absolute', width: '100%'}} src={fluff} alt=''/>
         <section className='second-section'>
           <h1 className='process-title'>
-            <span className='title'>The Process</span>
+            <span className=''>The Process</span>
           </h1>
           <div className='process-description'>
-            <h3>
+            <h2>
               Let's not complicate things, you simply pich your base, scents and add-ons.
-            </h3>
+            </h2>
           </div>
           <div className='row process-container'>
             <div className='step-process row'>
               <div className='second-section-step'>
                 <span>base</span>
+                <p>Choose your base of the soap, whether you haver dry skin or oily skin we got it all.</p>
               </div>
               <i className="fas fa-angle-right arrow"></i>
               <div className='second-section-step'>
                 <span>Scent</span>
+                <p>Choose your scent of the soap, everyone loves to smell like honey.</p>
               </div>
               <i className="fas fa-angle-right arrow"></i>
               <div className='second-section-step'>
                 <span>Add-on</span>
+                <p>Choose your add-on of the soap, holostic approach.</p>
               </div>
               <i className="fas fa-angle-right arrow"></i>
               <div className='second-section-step'>
                 <span>Enjoy</span>
+                <p>Recieve your item and feel the cleanse.</p>
               </div>
             </div>
           </div>
