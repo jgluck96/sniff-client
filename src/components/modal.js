@@ -35,7 +35,7 @@ class Modal extends Component {
       <Fragment>
       <div className='modal-background' onClick={this.closeModal}>
       </div>
-      <div className={this.props.modals.login ? 'modal login-modal' : 'modal signup-modal'}>
+      <div className={this.props.modals.signup ? 'modal signup-modal' : 'modal login-modal'}>
       {this.props.children}
       </div>
       </Fragment>

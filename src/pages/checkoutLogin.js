@@ -5,7 +5,7 @@ import { login } from '../actions/users'
 import {closeModal, openSignup} from '../actions/modals'
 import $ from 'jquery'
 
-class Login extends Component {
+class CheckoutLogin extends Component {
 
   state = {
     email: '',
@@ -51,13 +51,18 @@ class Login extends Component {
         <div className='modal-content-container'>
           <div className='email-column'>
             <label>Email</label >
-            <input value={this.state.email} className='promo-apply' name='email' onChange={this.handleChange}/>
+            <input className='promo-apply' value={this.state.email} name='email' onChange={this.handleChange}/>
           </div>
           <div className='email-column'>
             <label>Password</label >
-            <input value={this.state.password} className='promo-apply' name='password' onChange={this.handleChange}/>
+            <input className='promo-apply' value={this.state.password} name='password' onChange={this.handleChange}/>
           </div>
-          <button className='email-signup' onClick={this.handleSubmit}>Log in</button>
+          <button className='email-signup' onClick={this.handleSubmit}>Login</button>
+          <div className='third-parties-co-with'>
+            <span style={{paddingLeft: '10px', paddingRight: '10px'}} className='third-parties-border'></span>
+            <span className='third-parties-border-co'>OR</span>
+          </div>
+          <button className='email-signup' style={{marginBottom: '50px'}} onClick={this.handleSubmit}>Checkout As Guest</button>
         </div>
         <div className='modal-content-container sign-log'>
           <p>Don't have an account?</p>
@@ -68,4 +73,4 @@ class Login extends Component {
   }
 }
 
-export default connect(null, {login, openSignup})(Login)
+export default connect(null, {login, openSignup})(CheckoutLogin)

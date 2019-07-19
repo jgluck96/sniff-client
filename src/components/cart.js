@@ -1,10 +1,18 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import soap from '../assets/images/soap.png'
+import {addToCart} from '../actions/selections'
+
 
 // import $ from 'jquery'
 
 class Cart extends Component {
+
+  componentDidMount() {
+    if (localStorage.getItem('recentlyAdded')) {
+      this.props.addToCart(JSON.parse(localStorage.getItem('recentlyAdded')));
+    }
+  }
 
   render(){
     return(
@@ -22,4 +30,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(Cart)
+export default connect(mapStateToProps, {addToCart})(Cart)

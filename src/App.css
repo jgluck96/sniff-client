@@ -604,6 +604,23 @@ background-color: #F5F5F5;
 .price-adjust {
   font-size: 14px;
   padding: 2px 6px 2px 0px;
+  /* text-align: start */
+}
+
+.order-price-adjust-left {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  float: left;
+  line-height: 18px
+}
+
+.order-price-adjust-right {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  float: right;
+  line-height: 18px
 }
 
 .order-price-adjust {
@@ -626,6 +643,7 @@ input[type=number]::-webkit-outer-spin-button {
 .number-input {
   border: 2px solid #ddd;
   display: inline-flex;
+  height: fit-content
 }
 
 .number-input,
@@ -636,7 +654,7 @@ input[type=number]::-webkit-outer-spin-button {
 .number-input button {
   outline:none;
   -webkit-appearance: none;
-  background-color: lightgrey;
+  background-color: white;
   border: none;
   align-items: center;
   justify-content: center;
@@ -645,12 +663,13 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
   margin: 0;
   position: relative;
-  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.8), inset 2px 2px 3px rgba(0, 0, 0, 0.5)
+  /* box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.8), inset 2px 2px 3px rgba(0, 0, 0, 0.5) */
 }
 
-.number-input button:active {
-  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 1),
-               inset 2px 2px 3px rgba(0, 0, 0, .9);
+.number-input button:hover {
+  background-color: rgba(0,0,0,0.1)
+  /* box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 1),
+               inset 2px 2px 3px rgba(0, 0, 0, .9); */
 }
 
 .number-input button:before,
@@ -1186,7 +1205,28 @@ input[type=number]::-webkit-outer-spin-button {
   left: 50%;
   right: auto;
   bottom: auto;
-  width: 40%;
+  width: 420px;
+  /* height: 70%; */
+  transition: all 0.4s;
+  transform: translate(-50%, -123%)
+}
+.login-modal {
+  /* padding: 20px; */
+  background: #fff;
+  border-radius: 4px;
+  display: inline-block;
+  min-height: 300px;
+  margin: 1rem;
+  z-index: 999999999;
+  position: fixed;
+  min-width: 300px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+  justify-self: center;
+  top: 80%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  width: 420px;
   /* height: 70%; */
   transition: all 0.4s;
   transform: translate(-50%, -123%)
@@ -1202,13 +1242,50 @@ input[type=number]::-webkit-outer-spin-button {
   flex-direction: row;
 }
 
+.first-last {
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.first-name {
+  display: flex;
+  flex-direction: column;
+  width: 45%
+}
+
+.last-name {
+  display: flex;
+  flex-direction: column;
+  width: 45%
+}
+
 .email-column {
   display: flex;
   flex-direction: column;
 }
+.pass-column {
+  display: flex;
+  flex-direction: column;
+}
+.feedback-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-dropdown {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid;
+  position: fixed;
+  margin-top: 5px;
+}
+.account-dropdown a:hover {
+  text-decoration: underline;
+}
 
 .email-signup {
-  margin-bottom: 16px;
+  margin-top: 16px;
   position: relative;
   box-sizing: border-box;
   height: 40px;
@@ -1302,6 +1379,8 @@ input[type=number]::-webkit-outer-spin-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px
 }
 
 .drop {
@@ -1353,6 +1432,119 @@ input[type=number]::-webkit-outer-spin-button {
 
 }
 
+.shopping-bag-container {
+  padding: calc(50px + 50px) 20px 0px 20px
+}
+
+.shopping-bag-content-order {
+  margin-top: 25px;
+  display: flex;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shopping-bag-order {
+  width: 30%;
+  position: sticky;
+  float: right;
+  top: 70px;
+  margin-top: 38px;
+  padding-left: 15px
+}
+
+.checkout-item {
+  border-top: 1px solid #ccc;
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10px
+}
+
+.checkout-item-img {
+  margin-right: 15px
+}
+
+.checkout-item-content {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.fa-times {
+  font-size: 14px;
+  height: fit-content;
+  margin-top: 0
+}
+
+.times {
+  display: inline-block;
+  /* margin-top: 4px; */
+  margin-left: 12px
+}
+
+.checkout-item-content-data {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  max-width: 50%
+}
+.checkout-item-right {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  max-width: 50%;
+  justify-content: space-around;
+}
+
+.checkout-content {
+  width: 65%;
+  float: left;
+  padding-left: 5px;
+  padding-right: 15px;
+}
+
+.shopping-bag-order {
+  width: 35%;
+  position: -webkit-sticky;
+  position: sticky;
+  float: right;
+  top: 70px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content
+}
+
+.shopping-bag-order-summary {
+  border: 1px solid #ccc;
+  padding: 12px;
+  order: 1
+}
+
+.shopping-bag-order-summary-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.subtotal-shipping {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.spread {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-est-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 13px 0px 3px 0px;
+}
+
 .mini-bag-checkout-btn {
   background-image: none;
   background-color: #000;
@@ -1372,6 +1564,143 @@ input[type=number]::-webkit-outer-spin-button {
   letter-spacing: 1px;
   line-height: 18px;
   margin: 0;
+  min-height: 36px;
+  overflow: hidden;
+  padding: 7px 12px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all .3s ease;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.shopping-bag-third-parties {
+  order: 4
+}
+
+.shopping-bag-checkout-btn {
+  order: 3
+}
+
+.shopping-bag-promo-code {
+  margin-top: 12px;
+  border: 1px solid #ccc;
+  /* transition: all .4s; */
+  order: 2;
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-input {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+}
+
+.promo-apply {
+  border-radius: 3px;
+  background-color: transparent;
+  font-family: Mabry-Medium, Helvetica, Arial;
+  font-size: 16px;
+  line-height: 24px;
+  -webkit-appearance: none;
+  color: rgb(17, 17, 17);
+  border-width: 1.2px;
+  border-style: solid;
+  border-color: rgb(204, 204, 204);
+  border-image: initial;
+  padding: 5px
+}
+
+.feedback-select {
+  border-radius: 3px;
+  background-color: transparent;
+  font-family: Mabry-Medium, Helvetica, Arial;
+  font-size: 18px;
+  line-height: 24px;
+  /* -webkit-appearance: none; */
+  color: rgb(17, 17, 17);
+  border-width: 1.2px;
+  border-style: solid;
+  border-color: rgb(204, 204, 204);
+  border-image: initial;
+  padding: 5px
+}
+
+.promo-input div {
+  border: 1px solid black;
+  background: black;
+  color: white;
+  padding: 8px 12px 8px 12px;
+  font-size: 14px;
+}
+
+.promo-plus {
+  height: auto;
+  width: fit-content;
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 0
+}
+
+.promo-plus:hover {
+  opacity: 0.6
+}
+.promo-minus:hover {
+  opacity: 0.6
+}
+
+.promo-drop {
+  height: 90px
+}
+
+.promo-minus {
+  height: auto;
+  width: fit-content;
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 0
+}
+
+.third-parties-co-with {
+  text-align: center;
+  margin: 27px 0 18px;
+  position: relative
+}
+
+.third-parties-border {
+border-top: 1px solid #ccc; left: 0; top: 9px; width: -webkit-fill-available; position: absolute
+}
+
+.third-parties-border-co {
+background: white; position: relative; padding: 9px}
+
+.main-checkout-btn {
+  background-image: none;
+  background-color: #000;
+  border-radius: 0;
+  border-style: solid;
+  border-width: 2px;
+  box-sizing: border-box;
+  color: white;
+  margin-top: 15px;
+  width: 100%;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-family: Gotham SSm,Helvetica Neue,Helvetica,Arial,Sans-Serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 18px;
   min-height: 36px;
   overflow: hidden;
   padding: 7px 12px;

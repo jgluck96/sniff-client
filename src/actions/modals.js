@@ -20,6 +20,13 @@ export const openMinibag = () => {
     }
 }
 
+export const openCheckout = () => {
+  return {
+    type: 'OPEN_CHECKOUT',
+    payload: true
+    }
+}
+
 
 export const closeModal = () => {
   return {

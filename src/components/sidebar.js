@@ -19,7 +19,6 @@ class Sidebar extends Component {
   // }
 
   render(){
-    console.log(this.props.base.base);
     return(
       <div className='sidebar'>
         <div onClick={this.props.goBase} className={this.props.step === 1 ? 'tab tabbed': 'tab'}><span className='tab-title'>{this.props.base.base ? <i className="far fa-check-square"></i> : <i className="far fa-square"></i>}base</span></div>
@@ -31,7 +30,6 @@ class Sidebar extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     base: state.base,
     frag: state.frag,

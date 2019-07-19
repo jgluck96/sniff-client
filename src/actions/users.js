@@ -1,5 +1,5 @@
 
-export const signmeUp = (user) => {
+export const signmeUp = (user, cart) => {
   return dispatch => {
     fetch('http://localhost:3000/users', {
       method: 'POST',
@@ -13,11 +13,44 @@ export const signmeUp = (user) => {
     })
       .then(res => res.json())
       .then(data => {
-        localStorage.setItem('token', data.token)
-        dispatch({
-          type: 'SIGNME_UP',
-          payload: data.user
-        })
+        console.log(data);
+        if (data.token) {
+          localStorage.setItem('token', data.token)
+          dispatch({
+            type: 'SIGNME_UP',
+            payload: data.user
+          })
+          if (cart.length > 0) {
+            // const localSoap = JSON.parse(localStorage.getItem('recentlyAdded'))
+            console.log(cart);
+            cart.map(localsoap => {
+              fetch('http://localhost:3000/soaps', {
+                method: 'POST',
+                headers: {
+                  'Accepts': 'application/json',
+                  'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                  base: localsoap.base,
+                  fragrance1: localsoap.fragrance1,
+                  fragrance2: localsoap.fragrance2,
+                  fragrance3: localsoap.fragrance3,
+                  addon: localsoap.addon,
+                  quantity: localsoap.quantity,
+                  price: localsoap.price,
+                  user_id: data.user.id,
+                  cart_id: data.user.cart.id
+                })
+              })
+            })
+          }
+        } else {
+          console.log(data);
+          // dispatch({
+          //   type: '',
+          //   payload: data.errors
+          // })
+        }
       })
   }
 }
@@ -46,10 +79,8 @@ export const autoLogin = () => {
     .then(resp => resp.json())
     .then(data => {
       if (data.errors) {
-        console.log(data);
         alert(data.errors)
       } else {
-        console.log(data);
         dispatch({ type: 'LOGIN', payload: data.user })
       }
     })

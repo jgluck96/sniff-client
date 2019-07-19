@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 
 class MinibagItem extends Component {
   render(){
+    console.log(this.props.minibagItem);
     return(
       <div className='mini-bag-item'>
         <div className='mini-bag-item-img'>
@@ -13,7 +14,7 @@ class MinibagItem extends Component {
           <span style={{fontWeight:'500', fontSize:'14px'}}>Quantity: {this.props.minibagItem.quantity}</span>
           <span style={{fontWeight:'500', fontSize:'14px'}}>${this.props.minibagItem.price}</span>
           <div className='mini-bag-item-content-bottom'>
-            <span style={{fontWeight:'500', fontSize:'14px'}}>Scents: <span style={{fontSize:'15px', color:'#585858'}}>{this.props.minibagItem.frag3 ? this.props.minibagItem.frag1 + ', '+ this.props.minibagItem.frag2 + ', '+ this.props.minibagItem.frag3 : this.props.minibagItem.frag2 ? this.props.minibagItem.frag1 + ', '+ this.props.minibagItem.frag2 : this.props.minibagItem.frag1}</span></span>
+            <span style={{fontWeight:'500', fontSize:'14px'}}>Scents: <span style={{fontSize:'15px', color:'#585858'}}>{this.props.minibagItem.fragrance3 ? this.props.minibagItem.fragrance1 + ', '+ this.props.minibagItem.fragrance2 + ', '+ this.props.minibagItem.fragrance3 : this.props.minibagItem.fragrance2 ? this.props.minibagItem.fragrance1 + ', '+ this.props.minibagItem.fragrance2 : this.props.minibagItem.fragrance1}</span></span>
             <span style={{fontWeight:'500', fontSize:'14px'}}>Add-on: <span style={{fontSize:'15px', color:'#585858'}}>{this.props.minibagItem.addon}</span></span>
 
           </div>

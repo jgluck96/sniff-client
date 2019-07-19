@@ -4,8 +4,6 @@ import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import Modal from '../components/modal'
 import {signmeUp} from '../actions/users'
-
-
 import {openLogin} from '../actions/modals'
 // import $ from 'jquery'
 
@@ -36,23 +34,32 @@ class Signup extends Component {
   }
 
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    this.props.signmeUp({
-    email: this.state.email,
-    password: this.state.password,
-    first_name: this.state.first_name,
-    last_name: this.state.last_name,
-    feedback: this.state.feedback,
-    guest: false
-    })
-    this.setState({
-      email: '',
-      password: '',
-      first_name: '',
-      last_name: '',
-      feedback: ''
-    })
+  handleSubmit = () => {
+    // if (!this.state.email) {
+    //
+    // } else if (!this.state.first_name) {
+    //
+    // } else if (!this.state.last_name) {
+    //
+    // } else if (!this.state.password) {
+    //
+    // } else {
+      this.props.signmeUp({
+      email: this.state.email,
+      password: this.state.password,
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      feedback: this.state.feedback,
+      guest: false
+    }, this.props.cart)
+      this.setState({
+        email: '',
+        password: '',
+        first_name: '',
+        last_name: '',
+        feedback: ''
+      })
+    // }
   }
 
   click = () => {
@@ -77,28 +84,28 @@ class Signup extends Component {
               <h1>Sign up...</h1>
               <p>Create an account to start building your soap today. It should take less than a minute.</p>
               <form>
-                <div className='email-row'>
-                  <div>
+                <div className='row first-last'>
+                  <div className='first-name'>
                     <label>First Name</label >
-                    <input name="first_name" value={this.state.first_name} onChange={this.handleChange}/>
+                    <input className='promo-apply' name="first_name" value={this.state.first_name} onChange={this.handleChange}/>
                   </div>
-                  <div>
+                  <div className='last-name'>
                     <label>Last Name</label >
-                    <input name="last_name" value={this.state.last_name} onChange={this.handleChange}/>
+                    <input className='promo-apply' name="last_name" value={this.state.last_name} onChange={this.handleChange}/>
                   </div>
                 </div>
                 <div className='email-column'>
                   <label>Email</label >
-                  <input name="email" value={this.state.email} onChange={this.handleChange}/>
+                  <input className='promo-apply' name="email" id='email-column' value={this.state.email} onChange={this.handleChange}/>
                 </div>
-                <div className='email-column'>
+                <div className='pass-column'>
                   <label>Password</label >
-                  <input name="password" value={this.state.password} onChange={this.handleChange}/>
+                  <input className='promo-apply' name="password" value={this.state.password} onChange={this.handleChange}/>
                 </div>
-                <div className='email-column'>
+                <div className='feedback-column'>
                   <label>How did you hear about us?</label >
-                  <select name="feedback" value={this.state.feedback} onChange={this.handleChange}>
-                    <option disabled selected value> -- select an option -- </option>
+                  <select className='feedback-select' name="feedback" value={this.state.feedback} onChange={this.handleChange}>
+                    <option hidden selected> -- select an option -- </option>
                     <option>from a friend</option>
                     <option>google</option>
                     <option>on a flyer</option>
@@ -107,7 +114,7 @@ class Signup extends Component {
                   </select>
                 </div>
               </form>
-              <button className='email-signup' onClick={this.handleSubmit}>Submit</button>
+              <button className='email-signup' onClick={this.handleSubmit}>Sign up</button>
             </div>
           </Fragment>
           :
@@ -159,4 +166,10 @@ class Signup extends Component {
   }
 }
 
-export default connect(null, {openLogin, signmeUp})(Signup)
+const mapStateToProps = state => {
+  return{
+    cart: state.cart
+  }
+}
+
+export default connect(mapStateToProps, {openLogin, signmeUp})(Signup)

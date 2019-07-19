@@ -12,11 +12,11 @@ class SoapWrap extends Component {
     quantity: 1
   }
 
-  componentDidMount() {
-    if (localStorage.getItem('recentlyAdded')) {
-      this.props.addToCart(JSON.parse(localStorage.getItem('recentlyAdded')));
-    }
-  }
+  // componentDidMount() {
+  //   if (localStorage.getItem('recentlyAdded')) {
+  //     this.props.addToCart(JSON.parse(localStorage.getItem('recentlyAdded')));
+  //   }
+  // }
 
   quantity = (e) => {
     const value = e.target.value
@@ -35,27 +35,61 @@ class SoapWrap extends Component {
   increment = () => this.setState(prevState => ({quantity: prevState.quantity+=1}))
 
   addToCart = () => {
-    const oldItems = JSON.parse(localStorage.getItem('recentlyAdded')) || [];
-    const newItem = {
-      'item': 'Soap',
-      'price':(this.props.subtotal*this.state.quantity).toFixed(2),
-      'quantity': this.state.quantity,
-      'base': this.props.base.name,
-      'frag1': this.props.frag1,
-      'frag2':this.props.frag2,
-      'frag3':this.props.frag3,
-      'addon':this.props.addon.name
+    if (this.props.user) {
+      fetch('http://localhost:3000/soaps', {
+        method: 'POST',
+        headers: {
+          'Accepts': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          base: this.props.base.name,
+          fragrance1: this.props.frag1,
+          fragrance2: this.props.frag2,
+          fragrance3: this.props.frag3,
+          addon: this.props.addon.name,
+          quantity: this.state.quantity,
+          price: (this.props.subtotal*this.state.quantity).toFixed(2),
+          user_id: this.props.user.id,
+          cart_id: this.props.user.cart.id
+        })
+      }).then(resp => resp.json()).then(soap => {
+        const currentSoap = [soap]
+        console.log(currentSoap);
+        console.log(typeof currentSoap);
+        this.props.addToCart(currentSoap)
+        this.props.addBase({})
+        this.props.clearFrags()
+        this.props.addAddon({})
+        this.props.clearSubtotal(0.00)
+        this.props.goBase()
+
+        this.setState(prevState => ({quantity: (prevState.quantity - prevState.quantity) + 1}))
+      }).then(this.props.openMinibag())
+
+    } else {
+      const oldItems = JSON.parse(localStorage.getItem('recentlyAdded')) || [];
+      const newItem = {
+        'item': 'Soap',
+        'price':(this.props.subtotal*this.state.quantity).toFixed(2),
+        'quantity': this.state.quantity,
+        'base': this.props.base.name,
+        'fragrance1': this.props.frag1,
+        'fragrance2':this.props.frag2,
+        'fragrance3':this.props.frag3,
+        'addon':this.props.addon.name
+      }
+      oldItems.push(newItem)
+      localStorage.setItem('recentlyAdded', JSON.stringify(oldItems));
+      this.props.addToCart(newItem);
+      this.props.addBase({})
+      this.props.clearFrags()
+      this.props.addAddon({})
+      this.props.clearSubtotal(0.00)
+      this.props.goBase()
+      this.props.openMinibag()
+      this.setState(prevState => ({quantity: (prevState.quantity - prevState.quantity) + 1}))
     }
-    oldItems.push(newItem)
-    localStorage.setItem('recentlyAdded', JSON.stringify(oldItems));
-    this.props.addToCart(JSON.parse(localStorage.getItem('recentlyAdded')));
-    this.props.addBase({})
-    this.props.clearFrags()
-    this.props.addAddon({})
-    this.props.clearSubtotal(0.00)
-    this.props.goBase()
-    this.props.openMinibag()
-    this.setState(prevState => ({quantity: (prevState.quantity - prevState.quantity) + 1}))
   }
 
   render(){
@@ -72,9 +106,16 @@ class SoapWrap extends Component {
               <div className='cart-btn'  onClick={this.addToCart}>ADD TO BAG</div>
             </div>
             <div className='order-price-adjust'>
-              <div className='price-adjust'>Base x {this.props.base.base ? '1' : '0'}: ${this.props.base.base ? '4.00' : '0.00'}</div>
-              <div className='price-adjust'>Scents x {Object.keys(this.props.frag).length}: ${(Object.keys(this.props.frag).length*1.80).toFixed(2)}</div>
-              <div className='price-adjust'>Add-on x {this.props.addon.addon ? '1' : '0'}: ${this.props.addon.addon ? '1.00' : '0.00'}</div>
+              <div className='order-price-adjust-left'>
+                <div style={{paddingRight: '0'}} className='price-adjust'><span>Base</span><i class="fas fa-times times"></i></div>
+                <div style={{paddingRight: '0'}} className='price-adjust'><span>Scents</span><i class="fas fa-times times"></i></div>
+                <div style={{paddingRight: '0'}} className='price-adjust'><span>Add-on</span><i class="fas fa-times times"></i></div>
+              </div>
+              <div className='order-price-adjust-right'>
+                <span className='price-adjust'>{this.props.base.base ? '1' : '0'} : ${this.props.base.base ? '4.00' : '0.00'}</span>
+                <span className='price-adjust'>{Object.keys(this.props.frag).length} : ${(Object.keys(this.props.frag).length*1.80).toFixed(2)}</span>
+                <span className='price-adjust'>{this.props.addon.addon ? '1' : '0'} : ${this.props.addon.addon ? '1.00' : '0.00'}</span>
+              </div>
               <hr />
               <div className='price-adjust'>Subtotal: ${(this.props.subtotal * this.state.quantity).toFixed(2)}</div>
             </div>
@@ -101,13 +142,15 @@ class SoapWrap extends Component {
 
 const mapStateToProps = state => {
   return {
+    user: state.user,
     base: state.base,
     frag: state.frag,
     addon: state.addon,
     subtotal: state.subtotal.toFixed(2),
     frag1: state.frag.frag1 ? state.frag.frag1.name:'',
     frag2: state.frag.frag2 ? state.frag.frag2.name:'',
-    frag3: state.frag.frag3 ? state.frag.frag3.name:''
+    frag3: state.frag.frag3 ? state.frag.frag3.name:'',
+    cart: state.cart
   }
 }
 

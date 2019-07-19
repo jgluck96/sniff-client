@@ -61,9 +61,21 @@ export const removeSubtotal = (amount) => {
   }
 }
 
-export const addToCart = (cartItems) => {
+export const addToCart = (cartItem) => {
   return {
     type: 'ADD_TO_CART',
-    payload: cartItems
+    payload: cartItem,
+  }
+}
+
+export const fetchCart = (userId) => {
+  return (dispatch) => {
+    fetch('http://localhost:3000/carts')
+    .then(res => res.json())
+    .then(carts => {
+      const myCart = carts.filter(cart => cart.user_id === userId)
+      // const mySoaps = myRentals.filter(rental => rental.status === 'expiring')
+      dispatch({type: 'ADD_TO_CART', payload: myCart[0].soaps})
+    })
   }
 }
