@@ -5,6 +5,7 @@ import Step3 from '../containers/step3'
 import {connect} from 'react-redux'
 import {addToCart, addBase, clearSubtotal, clearFrags, removeFrag, addAddon} from '../actions/selections'
 import {openMinibag} from '../actions/modals'
+const uuidv1 = require('uuid/v1');
 
 class SoapWrap extends Component {
 
@@ -77,7 +78,8 @@ class SoapWrap extends Component {
         'fragrance1': this.props.frag1,
         'fragrance2':this.props.frag2,
         'fragrance3':this.props.frag3,
-        'addon':this.props.addon.name
+        'addon':this.props.addon.name,
+        'uuid': uuidv1()
       }
       oldItems.push(newItem)
       localStorage.setItem('recentlyAdded', JSON.stringify(oldItems));

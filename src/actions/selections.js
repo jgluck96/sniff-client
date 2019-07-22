@@ -68,6 +68,13 @@ export const addToCart = (cartItem) => {
   }
 }
 
+export const replaceCart = (newItems) => {
+  return {
+    type: 'REPLACE_CART',
+    payload: newItems,
+  }
+}
+
 export const fetchCart = (userId) => {
   return (dispatch) => {
     fetch('http://localhost:3000/carts')

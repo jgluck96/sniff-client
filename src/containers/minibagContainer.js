@@ -8,7 +8,7 @@ class MinibagContainer extends Component {
       <div className='mini-bag-content'>
         {
           this.props.cart.map(minibagItem => {
-          return <MinibagItem minibagItem={minibagItem}/>
+          return <MinibagItem key={minibagItem.uuid} minibagItem={minibagItem}/>
           })
         }
       </div>

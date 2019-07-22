@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from './pages/home'
 import Customize from './pages/customize'
 import Login from './pages/login'
+import Stripe from './pages/stripe'
 import CheckoutLogin from './pages/checkoutLogin'
 import Signup from './pages/signup'
 import Checkout from './pages/checkout'
@@ -44,6 +45,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route path='/customize' component={Customize} />
           <Route path='/checkout/sniffBag' component={Checkout} />
+          <Route path='/checkout/order' component={Stripe} />
         </Switch>
         {
           this.props.login ?

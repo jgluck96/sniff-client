@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 import {openCheckout} from '../actions/modals'
 import $ from 'jquery'
 
@@ -21,6 +22,7 @@ class ShoppingBagOrder extends Component {
   checkingOut = () => {
     if (this.props.user) {
       // either push to the stripe component's route or make a reducer to change status of stripe modal to true
+      this.props.history.push('/checkout/order')
     } else {
       this.props.openCheckout()
     }
@@ -92,4 +94,4 @@ const mapStateToProps = state => {
     })()
   }
 }
-export default connect(mapStateToProps, {openCheckout})(ShoppingBagOrder)
+export default withRouter(connect(mapStateToProps, {openCheckout})(ShoppingBagOrder))

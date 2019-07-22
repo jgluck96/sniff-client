@@ -1284,6 +1284,14 @@ input[type=number]::-webkit-outer-spin-button {
   text-decoration: underline;
 }
 
+.remove-item {
+  cursor: pointer;
+  transition: all .3s
+}
+.remove-item:hover {
+  opacity: 0.5;
+}
+
 .email-signup {
   margin-top: 16px;
   position: relative;
@@ -1646,7 +1654,8 @@ input[type=number]::-webkit-outer-spin-button {
   float: right;
   font-size: 20px;
   cursor: pointer;
-  margin: 0
+  margin: 0;
+  transition: all .3s
 }
 
 .promo-plus:hover {
@@ -1665,6 +1674,7 @@ input[type=number]::-webkit-outer-spin-button {
   width: fit-content;
   float: right;
   font-size: 20px;
+  transition: all .3s;
   cursor: pointer;
   margin: 0
 }
