@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import StripeCheckout from 'react-stripe-checkout';
-import Modal from '../components/modal'
+// import Modal from '../components/modal'
 
 // <StripeCheckout
 //   stripeKey="pk_test_07Kgp8Tbt6abc5kUxCD1PyHj00aC3prdqq"
@@ -17,10 +17,14 @@ class Stripe extends Component {
   onToken = (token, addresses) => {
     console.log(token);
     console.log(addresses);
+    const soaps = this.props.cart.map(soap => soap.id).join(',')
     let charge = {
       email: this.props.user.email,
       amount: this.props.subtotal > 15 ? this.props.subtotal : this.props.total,
       description: 'soap purchase',
+      confirmation: Date.now().toString(),
+      userId: this.props.user.id,
+      soaps: soaps,
       currency: 'USD',
       token: token
     }
@@ -39,12 +43,12 @@ class Stripe extends Component {
 
   render(){
     return(
-      <Modal>
+
       <StripeCheckout
         stripeKey="pk_test_07Kgp8Tbt6abc5kUxCD1PyHj00aC3prdqq"
         token={this.onToken}
       />
-      </Modal>
+
     )
   }
 }

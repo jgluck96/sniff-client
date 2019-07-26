@@ -1,49 +1,44 @@
 import React, {Component} from 'react'
 import {injectStripe} from 'react-stripe-elements'
 import {connect} from 'react-redux'
+import {Elements} from 'react-stripe-elements';
+import InjectedPaymentForm from '../components/injectedPaymentForm';
 
 class PaymentForm extends Component {
 
-  state = {
-
-  }
-
-   submit = (e) =>{
-    console.log(this);
-    let chargeToken =  this.props.createToken({name: 'Name'})
-    let charge = {
-      amount: this.props.subtotal > 15 ? this.props.subtotal : this.props.total,
-      description: 'soap purchase',
-      currency: 'USD',
-      token: chargeToken.token.id
-    }
-    let response =  fetch('http://localhost:3000/charges', {
-      method: 'POST',
-      headers: {
-        'Accepts': 'application/json',
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        charge: charge
-      })
-    })
-
-    if (response.ok) console.log('purchase complete');
-  }
+  // state = {
+  //
+  // }
+  //
+  //  submit = (e) =>{
+  //   console.log(this);
+  //   let chargeToken =  this.props.createToken({name: 'Name'})
+  //   let charge = {
+  //     amount: this.props.subtotal > 15 ? this.props.subtotal : this.props.total,
+  //     description: 'soap purchase',
+  //     currency: 'USD',
+  //     token: chargeToken.token.id
+  //   }
+  //   let response =  fetch('http://localhost:3000/charges', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accepts': 'application/json',
+  //       'Content-type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       charge: charge
+  //     })
+  //   })
+  //
+  //   if (response.ok) console.log('purchase complete');
+  // }
 
   render(){
+    console.log(this.props);
     return(
-      <div style={{position: 'absolute', top: '30%'}}>
-        <form>
-          <div>
-            <label>Amount $</label>
-            <input readOnly value={this.props.subtotal > 15 ? this.props.subtotal : this.props.total} />
-          </div>
-          <div>
-          </div>
-          <div onClick={this.submit}>submit</div>
-        </form>
-      </div>
+      <Elements>
+        <InjectedPaymentForm />
+      </Elements>
     )
   }
 }

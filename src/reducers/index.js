@@ -6,6 +6,7 @@ import modals from './modals'
 import subtotal from './subtotal'
 import cart from './cart'
 import user from './userReducer'
+import checkout from './checkout'
 
 
 export default combineReducers({
@@ -15,7 +16,8 @@ export default combineReducers({
   modals,
   subtotal,
   cart,
-  user
+  user,
+  checkout
 })
 
 // reducer example:

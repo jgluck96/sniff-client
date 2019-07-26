@@ -82,7 +82,7 @@ export const fetchCart = (userId) => {
     .then(carts => {
       const myCart = carts.filter(cart => cart.user_id === userId)
       // const mySoaps = myRentals.filter(rental => rental.status === 'expiring')
-      dispatch({type: 'ADD_TO_CART', payload: myCart[0].soaps})
+      dispatch({type: 'REPLACE_CART', payload: myCart[0].soaps})
     })
   }
 }

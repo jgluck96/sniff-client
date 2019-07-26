@@ -1,5 +1,4 @@
 export default (state={}, action) => {
-  console.log(state);
   const newState = state
   switch (action.type) {
     case 'ADD_FRAG1':

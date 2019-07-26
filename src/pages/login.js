@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Modal from '../components/modal'
 import { login } from '../actions/users'
+import { fetchCart } from '../actions/selections'
 import {closeModal, openSignup} from '../actions/modals'
 import $ from 'jquery'
 
@@ -21,6 +22,7 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+
     fetch('http://localhost:3000/login', {
       method: 'POST',
       headers: {
@@ -36,8 +38,45 @@ class Login extends Component {
         if (data.errors) {
           alert(data.errors)
         } else {
-          localStorage.setItem('token', data.token)
-          this.props.login(data.user)
+          // localStorage.setItem('token', data.token)
+          // this.props.login(data.user)
+          console.log(this.props.cart.length);
+          if (this.props.cart.length > 0) {
+            // const localSoap = JSON.parse(localStorage.getItem('recentlyAdded'))
+            this.props.cart.map(localsoap => {
+              fetch('http://localhost:3000/soaps', {
+                method: 'POST',
+                headers: {
+                  'Accepts': 'application/json',
+                  'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                  base: localsoap.base,
+                  fragrance1: localsoap.fragrance1,
+                  fragrance2: localsoap.fragrance2,
+                  fragrance3: localsoap.fragrance3,
+                  addon: localsoap.addon,
+                  quantity: localsoap.quantity,
+                  price: localsoap.price,
+                  user_id: data.user.id,
+                  cart_id: data.user.cart.id
+                  // order_id: null
+                })
+              }).then(resp => {
+                localStorage.setItem('token', data.token)
+                // this.props.login(data.user)
+                // this.props.closeModal()
+                $('#root').removeClass('modal-overflow')
+
+              })
+            })
+          } else {
+            localStorage.setItem('token', data.token)
+            // this.props.login(data.user)
+            // this.props.closeModal()
+            $('#root').removeClass('modal-overflow')
+
+          }
           // this.props.closeModal()
           // document.getElementById('root').setAttribute('class', '')
           // this.props.history.push('/')
@@ -68,4 +107,10 @@ class Login extends Component {
   }
 }
 
-export default connect(null, {login, openSignup})(Login)
+const mapStateToProps = state => {
+  return {
+    cart: state.cart
+  }
+}
+
+export default connect(mapStateToProps, {login, openSignup, fetchCart})(Login)

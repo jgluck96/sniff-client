@@ -39,6 +39,7 @@ class CheckoutItem extends Component {
             price: price
           })
         }).then(resp => resp.json()).then(soaps=> {
+          soaps.sort((a,b) =>  -(b.id - a.id))
           // const foundSoap = this.props.cart.filter(soapObj=> soapObj.id === this.props.checkoutItem.id)
           // const foundSoapIdx = this.props.cart.indexOf(foundSoap[0])
           // const oldCart = this.props.cart
@@ -80,15 +81,16 @@ class CheckoutItem extends Component {
         })
       })
       .then(resp => resp.json()).then(soaps=> {
-        const foundSoap = this.props.cart.filter(soapObj=> soapObj.id === this.props.checkoutItem.id)
-        const foundSoapIdx = this.props.cart.indexOf(foundSoap[0])
+        soaps.sort((a,b) =>  -(b.id - a.id))
+        // const foundSoap = this.props.cart.filter(soapObj=> soapObj.id === this.props.checkoutItem.id)
+        // const foundSoapIdx = this.props.cart.indexOf(foundSoap[0])
 
-        const oldCart = this.props.cart
+        // const oldCart = this.props.cart
         // oldCart[foundSoapIdx] = soaps[soaps.length-1]
 
-        oldCart[foundSoapIdx] = soaps[soaps.length-1]
+        // oldCart[foundSoapIdx] = soaps[soaps.length-1]
         // soaps.pop()
-        this.props.replaceCart(oldCart)
+        this.props.replaceCart(soaps)
       })
     } else {
         const oldItems = JSON.parse(localStorage.getItem('recentlyAdded'))

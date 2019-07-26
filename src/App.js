@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from './pages/home'
 import Customize from './pages/customize'
 import Login from './pages/login'
-import Stripe from './pages/stripe'
+import Confirmation from './pages/confirmationPage'
 import CheckoutLogin from './pages/checkoutLogin'
 import Signup from './pages/signup'
 import Checkout from './pages/checkout'
@@ -21,18 +21,21 @@ class App extends Component {
 
   componentDidMount() {
     if (localStorage.getItem('token')) {
+      console.log('checkit cdm');
       this.props.autoLogin()
       this.props.closeModal()
-      setTimeout(() => this.props.fetchCart(this.props.user.id), 3000)
+      // setTimeout(() => this.props.fetchCart(this.props.user.id), 3000)
     }
   }
 
   componentDidUpdate(prevState) {
     if (prevState.user !== this.props.user && localStorage.getItem('token')) {
+console.log('cdu logged in');
       this.props.closeModal()
       localStorage.removeItem('recentlyAdded')
     }
-    if (prevState.user !== this.props.user && this.props.user && prevState.cart !== this.props.cart) {
+    if (prevState.user !== this.props.user && this.props.user) {
+console.log('maybe');
       this.props.fetchCart(this.props.user.id)
     }
   }
@@ -45,7 +48,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route path='/customize' component={Customize} />
           <Route path='/checkout/sniffBag' component={Checkout} />
-          <Route path='/checkout/order' component={Stripe} />
+          <Route path='/order-confirmation' component={Confirmation} />
         </Switch>
         {
           this.props.login ?

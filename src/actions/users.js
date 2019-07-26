@@ -81,8 +81,31 @@ export const autoLogin = () => {
       if (data.errors) {
         alert(data.errors)
       } else {
+        // console.log('hhh');
         dispatch({ type: 'LOGIN', payload: data.user })
+        // dispatch({type: 'ADD_TO_CART', payload: data.user.cart.soaps})
+        // fetchCart(data.user.id)
+        // fetch('http://localhost:3000/carts')
+        // .then(res => res.json())
+        // .then(carts => {
+        //   const myCart = carts.filter(cart => cart.user_id === data.user.id)
+        //   // const mySoaps = myRentals.filter(rental => rental.status === 'expiring')
+        //   dispatch({type: 'ADD_TO_CART', payload: myCart[0].soaps})
+        // })
       }
+    })
+  }
+}
+
+ const fetchCart = (userId) => {
+  // console.log(userId);
+  return (dispatch) => {
+    fetch('http://localhost:3000/carts')
+    .then(res => res.json())
+    .then(carts => {
+      const myCart = carts.filter(cart => cart.user_id === userId)
+      // const mySoaps = myRentals.filter(rental => rental.status === 'expiring')
+      dispatch({type: 'ADD_TO_CART', payload: myCart[0].soaps})
     })
   }
 }
