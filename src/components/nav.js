@@ -10,14 +10,12 @@ import $ from 'jquery'
 
 class Nav extends Component {
 
-  state = {
-    dropAccount: false
-  }
 
   componentDidMount() {
     $(document).scroll(function() {
       if ($(this).scrollTop() > 50) { //Adjust 150
         $('.navbar').css('height', '55px');
+        $('.navbar::after').css('height', '55px');
         $('.logo-img').css('height', '55px');
         $('.nav-item').css('margin-top', '5px')
       } else {
@@ -28,12 +26,13 @@ class Nav extends Component {
     });
   }
 
-  openLoginModel = () => {
+
+  openLoginModal = () => {
     this.props.openLogin()
     document.getElementById('root').setAttribute('class', 'modal-overflow')
   }
 
-  openSignupModel = () => {
+  openSignupModal = () => {
     this.props.openSignup()
     document.getElementById('root').setAttribute('class', 'modal-overflow')
   }
@@ -42,10 +41,12 @@ class Nav extends Component {
   localStorage.removeItem("token")
   this.props.logout()
   }
-
-  dropdown = (e) => {
-    this.setState({dropAccount: !this.state.dropAccount})
-  }
+  //
+  // scrollTo = () => {
+  //   $('html, body').animate({
+  //     scrollTop: $(".second-section").offset().top
+  //   }, 600)
+  // }
 
 
   render() {
@@ -56,63 +57,70 @@ class Nav extends Component {
           <nav className='navbar fixed-top'>
             <div className='container-fluid'>
             <div className='logo'>
-              <NavLink className='' to='/'>
+              <a className='' href='/'>
                 <img className='logo-img' src={logo} alt=''/>
-              </NavLink>
-              <div className='nav-log'>
-              {this.props.user ?
-                <Fragment>
-                  <div className='nav-link login-signup' name='account-dropdown' onMouseEnter={this.dropdown} onMouseLeave={this.dropdown}>
-                    <span>Account</span><i style={{fontSize: '14px', height: '0'}} className="fas fa-caret-down"></i>
-                    { this.state.dropAccount ?
-                      <div className='account-dropdown'>
-                        <div>
-                          <div><a><span>Profile</span></a></div>
-                          <div><a><span>Wishlist</span></a></div>
-                          <div><a href='/'><span onClick={this.logout}>Logout</span></a></div>
-                        </div>
-                      </div>
-                      :
-                      null
-                    }
-                  </div>
+              </a>
 
-                </Fragment>
-                :
-                <Fragment>
-                  <div className='nav-link login-signup' onClick={this.openLoginModel}>
-                    login
-                  </div>
-                  <span style={{marginRight: '8px', marginLeft: '8px'}}>or</span>
-                  <div className='nav-link login-signup' onClick={this.openSignupModel}>
-                    sign up
-                  </div>
-                </Fragment>
-              }
-              </div>
             </div>
 
               <ul className='navbar-nav'>
 
                 <li className='nav-item'>
-                  <NavLink className='nav-link non-cart' to='/'>
+                  <a className='nav-link non-cart' href='/'>
                     Home
-                  </NavLink>
+                  </a>
                 </li>
-                <li className='nav-item'>
-                  <div className='nav-link non-cart' name='about-dropdown'>
+                <li className='nav-item' style={{width: '7%'}}>
+                  <div className='nav-link about-nav non-cart' name='about-dropdown'>
                     <span>About</span><i style={{fontSize: '14px'}} className="fas fa-caret-down"></i>
+
+                      <div className='about-dropdown'>
+                        <div className='about-dropdown-content'>
+                          <div onClick={this.scrollTo} className='about-tab'><a href='/how-it-works'><span>How it works</span></a></div>
+                          <div className='about-tab about-middle'><a href='/about/who-we-are'><span>Our story</span></a></div>
+                          <div className='about-tab'><a href='/contact'><span>Contact us</span></a></div>
+                        </div>
+                      </div>
                   </div>
                 </li>
                 <li className='nav-item'>
-                  <NavLink className='nav-link non-cart' to='/customize'>
+                  <a className='nav-link non-cart' href='/customize'>
                     Customize
-                  </NavLink>
+                  </a>
                 </li>
                 <li className='nav-item'>
-                  <NavLink className='nav-link cart-container' to='/checkout/sniffBag'>
+                {localStorage.getItem('token') ?
+                  <Fragment>
+                    <div className='nav-link account-drop' name='account-dropdown'>
+                      <span>Account</span><i style={{fontSize: '14px', height: '0'}} className="fas fa-caret-down"></i>
+
+                        <div className='account-dropdown'>
+                          <div  className='about-dropdown-content'>
+                            <div className='about-tab'><a><span>Profile</span></a></div>
+                            <div className='about-tab about-middle'><a><span>Wishlist</span></a></div>
+                            <div className='about-tab'><a href='/'><span onClick={this.logout}>Logout</span></a></div>
+                          </div>
+                        </div>
+
+                    </div>
+
+                  </Fragment>
+                  :
+                  <Fragment>
+                    <div className='nav-link nav-login' onClick={this.openLoginModal}>
+                      login
+                    </div>
+                    <span style={{marginRight: '8px', marginLeft: '8px', border: '.5px solid'}}></span>
+                    <div className='nav-link nav-signup' onClick={this.openSignupModal}>
+                      sign up
+                    </div>
+                  </Fragment>
+                }
+                </li>
+                <li style={{width: '4%'}} className='nav-item'>
+                  <a className='nav-link cart-container' href='/checkout/sniffBag'>
                     <Cart />
-                  </NavLink>
+                  </a>
                 </li>
 
               </ul>

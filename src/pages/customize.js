@@ -38,13 +38,13 @@ class Customize extends Component {
         <div className='custom-flex'>
           <Model />
           <Soap />
-          <div className='row selections'>
-            <div className='your-selection'>{this.props.base.base ? <img className='selection-image' src={this.props.base.img} alt=''/> : null}</div>
-            <div className='your-selection'>{this.props.frag.frag1 ? <img className='selection-image' src={this.props.frag.frag1.img} alt=''/> : null}</div>
-            <div className='your-selection'>{this.props.frag.frag2 ? <img className='selection-image' src={this.props.frag.frag2.img} alt=''/> : null}</div>
-            <div className='your-selection'>{this.props.frag.frag3 ? <img className='selection-image' src={this.props.frag.frag3.img} alt=''/> : null}</div>
-            <div className='your-selection'>{this.props.addon.addon ? <img className='selection-image' src={this.props.addon.img} alt=''/> : null}</div>
-          </div>
+        </div>
+        <div className='row selections'>
+          <div className='your-selection'>{this.props.base.base ? <img className='selection-image' src={this.props.base.img} alt=''/> : null}</div>
+          <div className='your-selection'>{this.props.frag.frag1 ? <img className='selection-image' src={this.props.frag.frag1.img} alt=''/> : null}</div>
+          <div className='your-selection'>{this.props.frag.frag2 ? <img className='selection-image' src={this.props.frag.frag2.img} alt=''/> : null}</div>
+          <div className='your-selection'>{this.props.frag.frag3 ? <img className='selection-image' src={this.props.frag.frag3.img} alt=''/> : null}</div>
+          <div className='your-selection'>{this.props.addon.addon ? <img className='selection-image' src={this.props.addon.img} alt=''/> : null}</div>
         </div>
       </div>
     )

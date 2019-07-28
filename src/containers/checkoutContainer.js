@@ -17,22 +17,24 @@ class CheckoutContainer extends Component {
   render(){
     return(
       <div className='checkout-content'>
-      {this.props.paymentPage ?
+      <div className='title' style={{fontWeight: '500'}}>Sniff. Bag ({this.props.cart.length})</div>
 
-        <Stripe />
-
-        :
-
+      {
+        this.props.cart.length > 0 ?
         <Fragment>
-        <div className='title' style={{fontWeight: '500'}}>Sniff. Bag ({this.props.cart.length})</div>
         {
           this.props.cart.map(checkoutItem => {
           return <CheckoutItem  key={Math.random()} checkoutItem={checkoutItem}/>
           })
         }
         </Fragment>
-
+        :
+        <div className='checkout-item'>
+          Your shopping bag is empty.
+        </div>
       }
+
+
       </div>
     )
   }

@@ -1,16 +1,23 @@
 import React, {Component, Fragment} from 'react'
 // import {connect} from 'react-redux'
-// import yellowcurve from '../assets/images/yellowcurve.png'
+import fluff from '../assets/images/fluff4.svg'
+import HomeCar from '../containers/homeCar'
 
 import $ from 'jquery'
 
-class Second extends Component {
+class Third extends Component {
   render(){
     return(
-      <section className='third-section'>
-      </section>
+      <Fragment>
+        <img style={{position: 'relative', width: '100%'}} src={fluff} alt=''/>
+        <section className='third-section'>
+          <div className='homecar'>
+            <HomeCar />
+          </div>
+        </section>
+      </Fragment>
     )
   }
 }
 
-export default Second
+export default Third

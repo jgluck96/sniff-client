@@ -1,3 +1,4 @@
+import $ from 'jquery'
 
 export const signmeUp = (user, cart) => {
   return dispatch => {
@@ -16,10 +17,10 @@ export const signmeUp = (user, cart) => {
         console.log(data);
         if (data.token) {
           localStorage.setItem('token', data.token)
-          dispatch({
-            type: 'SIGNME_UP',
-            payload: data.user
-          })
+          // dispatch({
+          //   type: 'SIGNME_UP',
+          //   payload: data.user
+          // })
           if (cart.length > 0) {
             // const localSoap = JSON.parse(localStorage.getItem('recentlyAdded'))
             console.log(cart);
@@ -43,6 +44,11 @@ export const signmeUp = (user, cart) => {
                 })
               })
             })
+            dispatch({
+              type: 'SIGNME_UP',
+              payload: data.user
+            })
+            $('#root').removeClass('modal-overflow')
           }
         } else {
           console.log(data);

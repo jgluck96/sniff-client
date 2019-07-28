@@ -64,7 +64,7 @@ class Login extends Component {
                 })
               }).then(resp => {
                 localStorage.setItem('token', data.token)
-                // this.props.login(data.user)
+                this.props.login(data.user)
                 // this.props.closeModal()
                 $('#root').removeClass('modal-overflow')
 
@@ -72,7 +72,7 @@ class Login extends Component {
             })
           } else {
             localStorage.setItem('token', data.token)
-            // this.props.login(data.user)
+            this.props.login(data.user)
             // this.props.closeModal()
             $('#root').removeClass('modal-overflow')
 

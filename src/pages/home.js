@@ -8,7 +8,7 @@ export default class Home extends Component {
   render(){
     return(
       <div style={{paddingTop: '75px'}}>
-        <img style={{position: 'absolute', top: '41px'}} src={yellow} alt=''/>
+        <img style={{position: 'absolute', top: '53px', width: '100%'}} src={yellow} alt=''/>
         <Hero />
         <Second />
         <Third />

@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 import {openCheckout} from '../actions/modals'
 import {openPaymentPage} from '../actions/checkout'
+import {replaceCart} from '../actions/selections'
 // import {}
 import StripeCheckout from 'react-stripe-checkout';
 import logo from "../assets/images/snifflogo.png"
@@ -68,6 +69,7 @@ class ShoppingBagOrder extends Component {
       console.log(order);
       // if (order.ok) {
         this.props.history.push('/order-confirmation', {confirmation: order.confirmation, total: order.total})
+        this.props.replaceCart([])
       // } else {
 
       // }
@@ -176,4 +178,4 @@ const mapStateToProps = state => {
     })()
   }
 }
-export default withRouter(connect(mapStateToProps, {openCheckout, openPaymentPage})(ShoppingBagOrder))
+export default withRouter(connect(mapStateToProps, {openCheckout, openPaymentPage, replaceCart})(ShoppingBagOrder))

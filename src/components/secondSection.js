@@ -16,7 +16,7 @@ class Second extends Component {
           </h1>
           <div className='process-description'>
             <h2>
-              Let's not complicate things, you simply pich your base, scents and add-ons.
+              Let's not complicate things, you simply pick your base, scents and add-on.
             </h2>
           </div>
           <div className='row process-container'>

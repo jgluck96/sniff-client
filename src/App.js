@@ -8,6 +8,9 @@ import Confirmation from './pages/confirmationPage'
 import CheckoutLogin from './pages/checkoutLogin'
 import Signup from './pages/signup'
 import Checkout from './pages/checkout'
+import Contact from './pages/contact'
+import OurStory from './pages/ourStory'
+import HowItWorks from './pages/howItWorks'
 import MiniBag from './components/miniBag'
 import Nav from './components/nav'
 import Footer from './components/footer'
@@ -27,6 +30,15 @@ class App extends Component {
       // setTimeout(() => this.props.fetchCart(this.props.user.id), 3000)
     }
   }
+  //
+  // componentWillMount(prevState) {
+  //   if (localStorage.getItem('token')) {
+  //     console.log('cwm');
+  //     this.props.autoLogin()
+  //     this.props.closeModal()
+  //     // setTimeout(() => this.props.fetchCart(this.props.user.id), 3000)
+  //   }
+  // }
 
   componentDidUpdate(prevState) {
     if (prevState.user !== this.props.user && localStorage.getItem('token')) {
@@ -49,6 +61,9 @@ console.log('maybe');
           <Route path='/customize' component={Customize} />
           <Route path='/checkout/sniffBag' component={Checkout} />
           <Route path='/order-confirmation' component={Confirmation} />
+          <Route path='/about/who-we-are' component={OurStory} />
+          <Route path='/contact' component={Contact} />
+          <Route path='/how-it-works' component={HowItWorks} />
         </Switch>
         {
           this.props.login ?
@@ -65,6 +80,7 @@ console.log('maybe');
           :
           null
         }
+        <Footer />
       </React.Fragment>
     );
   }
