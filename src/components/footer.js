@@ -79,7 +79,7 @@ class Footer extends Component {
               <div className="footer-container">
                 <div className="row align-items-center space-between">
                   <div className="">
-                    <p className="text-sm">© 2019 Robin.  All rights reserved.</p>
+                    <p className="text-sm">© 2019 sniff.  All rights reserved.</p>
                   </div>
                   <div className="">
                     <ul className="list-inline align-right mt-mb-1">

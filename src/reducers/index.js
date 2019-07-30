@@ -7,6 +7,8 @@ import subtotal from './subtotal'
 import cart from './cart'
 import user from './userReducer'
 import checkout from './checkout'
+import guestco from './guestco'
+import guestinfo from './guestinfo'
 
 
 export default combineReducers({
@@ -17,7 +19,9 @@ export default combineReducers({
   subtotal,
   cart,
   user,
-  checkout
+  checkout,
+  guestco,
+  guestinfo
 })
 
 // reducer example:

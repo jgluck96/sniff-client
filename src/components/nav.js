@@ -15,13 +15,16 @@ class Nav extends Component {
     $(document).scroll(function() {
       if ($(this).scrollTop() > 50) { //Adjust 150
         $('.navbar').css('height', '55px');
-        $('.navbar::after').css('height', '55px');
+        // $('.navbar::after').css('height', '55px');
         $('.logo-img').css('height', '55px');
-        $('.nav-item').css('margin-top', '5px')
+        $('.navbar-nav').css('height', '55px')
+        $('.about-dropdown').css('marginTop', '35px')
       } else {
         $('.navbar').css('height', '80px');
         $('.logo-img').css('height', '80px');
-        $('.nav-item').css('margin-top', '8px')
+        $('.navbar-nav').css('height', '80px');
+        $('.about-dropdown').css('marginTop', '60px')
+
       }
     });
   }
@@ -53,7 +56,8 @@ class Nav extends Component {
     return(
       <div>
         <header>
-        <Coupon />
+
+          <Coupon />
           <nav className='navbar fixed-top'>
             <div className='container-fluid'>
             <div className='logo'>
@@ -70,17 +74,17 @@ class Nav extends Component {
                     Home
                   </a>
                 </li>
-                <li className='nav-item' style={{width: '7%'}}>
+                <li className='nav-item'>
                   <div className='nav-link about-nav non-cart' name='about-dropdown'>
                     <span>About</span><i style={{fontSize: '14px'}} className="fas fa-caret-down"></i>
 
-                      <div className='about-dropdown'>
-                        <div className='about-dropdown-content'>
-                          <div onClick={this.scrollTo} className='about-tab'><a href='/how-it-works'><span>How it works</span></a></div>
-                          <div className='about-tab about-middle'><a href='/about/who-we-are'><span>Our story</span></a></div>
-                          <div className='about-tab'><a href='/contact'><span>Contact us</span></a></div>
-                        </div>
-                      </div>
+                  </div>
+                  <div className='about-dropdown'>
+                    <div className='about-dropdown-content'>
+                      <div onClick={this.scrollTo} className='about-tab'><a href='/how-it-works'><span>How it works</span></a></div>
+                      <div className='about-tab about-middle'><a href='/about/who-we-are'><span>Our story</span></a></div>
+                      <div className='about-tab'><a href='/contact'><span>Contact us</span></a></div>
+                    </div>
                   </div>
                 </li>
                 <li className='nav-item'>
@@ -88,31 +92,32 @@ class Nav extends Component {
                     Customize
                   </a>
                 </li>
-                <li className='nav-item'>
+                <li className='nav-item account-container-drop'>
                 {localStorage.getItem('token') ?
                   <Fragment>
                     <div className='nav-link account-drop' name='account-dropdown'>
-                      <span>Account</span><i style={{fontSize: '14px', height: '0'}} className="fas fa-caret-down"></i>
+                      <i class="fas fa-user-circle"></i><i style={{fontSize: '14px', height: '0'}} className="fas fa-caret-down"></i>
 
-                        <div className='account-dropdown'>
-                          <div  className='about-dropdown-content'>
-                            <div className='about-tab'><a><span>Profile</span></a></div>
-                            <div className='about-tab about-middle'><a><span>Wishlist</span></a></div>
-                            <div className='about-tab'><a href='/'><span onClick={this.logout}>Logout</span></a></div>
-                          </div>
-                        </div>
 
+                    </div>
+                    <div className='about-dropdown'>
+                      <div  className='about-dropdown-content'>
+                        <div className='about-tab'><a><span>Profile</span></a></div>
+                        <div className='about-tab about-middle'><a><span>Wishlist</span></a></div>
+                        <div className='about-tab'><a href='/'><span onClick={this.logout}>Logout</span></a></div>
+                      </div>
                     </div>
 
                   </Fragment>
                   :
                   <Fragment>
-                    <div className='nav-link nav-login' onClick={this.openLoginModal}>
-                      login
-                    </div>
-                    <span style={{marginRight: '8px', marginLeft: '8px', border: '.5px solid'}}></span>
-                    <div className='nav-link nav-signup' onClick={this.openSignupModal}>
-                      sign up
+                    <div className='nav-login-signup'>
+                      <div className='nav-link nav-login' onClick={this.openLoginModal}>
+                        login
+                      </div>
+                      <div className='nav-link nav-signup' onClick={this.openSignupModal}>
+                        sign up
+                      </div>
                     </div>
                   </Fragment>
                 }

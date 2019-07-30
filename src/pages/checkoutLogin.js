@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Modal from '../components/modal'
 import { login } from '../actions/users'
 import {closeModal, openSignup} from '../actions/modals'
+import {guestCo} from '../actions/checkout'
 import $ from 'jquery'
 
 class CheckoutLogin extends Component {
@@ -81,6 +82,11 @@ class CheckoutLogin extends Component {
       })
   }
 
+  guestCo = () => {
+    this.props.guestCo(true)
+    this.props.closeModal()
+  }
+
   render(){
     return(
       <Modal>
@@ -98,7 +104,7 @@ class CheckoutLogin extends Component {
             <span style={{paddingLeft: '10px', paddingRight: '10px'}} className='third-parties-border'></span>
             <span className='third-parties-border-co'>OR</span>
           </div>
-          <button className='email-signup' style={{marginBottom: '50px'}} onClick={this.handleSubmit}>Checkout As Guest</button>
+          <button className='email-signup' style={{marginBottom: '50px'}} onClick={this.guestCo}>Checkout As Guest</button>
         </div>
         <div className='modal-content-container sign-log'>
           <p>Don't have an account?</p>
@@ -115,4 +121,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {login, openSignup})(CheckoutLogin)
+export default connect(mapStateToProps, {login, openSignup, guestCo, closeModal})(CheckoutLogin)

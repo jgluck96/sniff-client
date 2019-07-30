@@ -39,7 +39,6 @@ export const signmeUp = (user, cart) => {
                   addon: localsoap.addon,
                   quantity: localsoap.quantity,
                   price: localsoap.price,
-                  user_id: data.user.id,
                   cart_id: data.user.cart.id
                 })
               })
@@ -51,6 +50,11 @@ export const signmeUp = (user, cart) => {
             $('#root').removeClass('modal-overflow')
           }
         } else {
+          dispatch({
+            type: 'SIGNME_UP',
+            payload: data.user
+          })
+          $('#root').removeClass('modal-overflow')
           console.log(data);
           // dispatch({
           //   type: '',
@@ -113,5 +117,12 @@ export const autoLogin = () => {
       // const mySoaps = myRentals.filter(rental => rental.status === 'expiring')
       dispatch({type: 'ADD_TO_CART', payload: myCart[0].soaps})
     })
+  }
+}
+
+export const guestinfo = (guestinfo) => {
+  return {
+    type: 'GUEST_INFO',
+    payload: guestinfo
   }
 }
