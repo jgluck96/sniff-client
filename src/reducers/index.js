@@ -9,6 +9,7 @@ import user from './userReducer'
 import checkout from './checkout'
 import guestco from './guestco'
 import guestinfo from './guestinfo'
+import signupErrors from './signupErrors'
 
 
 export default combineReducers({
@@ -21,7 +22,8 @@ export default combineReducers({
   user,
   checkout,
   guestco,
-  guestinfo
+  guestinfo,
+  signupErrors
 })
 
 // reducer example:

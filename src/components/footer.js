@@ -5,6 +5,14 @@ import {logout} from '../actions/users'
 
 class Footer extends Component {
 
+  state = {
+    existError: '',
+    submitted: false,
+    email: '',
+    validError: '',
+
+  }
+
   openLoginModal = () => {
     this.props.openLogin()
     document.getElementById('root').setAttribute('class', 'modal-overflow')
@@ -18,6 +26,34 @@ class Footer extends Component {
   logout = () => {
   localStorage.removeItem("token")
   this.props.logout()
+  }
+
+  changeHandler = (e) => {
+    this.setState({validError: '', existError: '', email: e.target.value})
+  }
+
+  submitEmail = () => {
+    const test = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)
+    if (!this.state.email || !test) {
+      this.setState({validError: 'Please enter a valid email!'})
+    } else {
+      fetch('http://localhost:3000/newsletters', {
+        method: 'POST',
+        headers: {
+          "Accepts": "application/json",
+          "content-type": "application/json"
+        },
+        body: JSON.stringify({
+          email: this.state.email
+        })
+      }).then(resp => resp.json()).then(email => {
+        if (email.message) {
+          this.setState({existError: email.message})
+        } else {
+          this.setState({submitted: true, email: '', existError: '', validError: ''})
+        }
+      })
+    }
   }
 
   render(){
@@ -55,6 +91,7 @@ class Footer extends Component {
                     <h6 className="text-uppercase text-dark mb-3">Tid Bits</h6>
                     <ul className="list-unstyled">
                       <li><a href="/customize" className="text-muted">Customize</a></li>
+                      <li><a href="/about/how-it-works" className="text-muted">How it works</a></li>
                       <li><a href="/about/who-we-are" className="text-muted">Our story</a></li>
                       <li><a href="/contact" className="text-muted">Contact us</a></li>
                       <li><a href="/" className="text-muted">Home</a></li>
@@ -65,10 +102,11 @@ class Footer extends Component {
                     <p className="mb-3"> Sign up for our newsletter to receive weekly offers and discounts</p>
                     <form action="#" id="newsletter-form">
                       <div className="input-group mb-3">
-                        <input type="email" placeholder="Your Email Address" aria-label="Your Email Address" className="form-control bg-transparent border-dark" />
-                        <div className="input-group-append">
+                        <input type="email" onChange={this.changeHandler} value={this.state.email} placeholder="Your Email Address" aria-label="Your Email Address" className="form-control bg-transparent border-dark" />
+                        <div onClick={this.submitEmail} className="input-group-append">
                           <i className="fa fa-paper-plane"></i>
                         </div>
+                        {this.state.submitted ? <span style={{color:'green'}}>Thanks for signing up!</span> : <span style={{color: 'red'}}>{this.state.validError ? this.state.validError : this.state.existError}</span>}
                       </div>
                     </form>
                   </div>

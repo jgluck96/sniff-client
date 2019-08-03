@@ -19,12 +19,21 @@ class ShoppingBagOrder extends Component {
     promoSubmitted: false
   }
 
-//   componentDidUpdate(prevState) {
-//     if (prevState.user !== this.props.user && this.props.user) {
-// console.log('maybe');
-//       this.props.fetchCart(this.props.user.id)
-//     }
-//   }
+  componentDidMount() {
+    if (this.props.cart.length < 1) {
+      $('.shopping-bag-order').css('pointer-events', 'none')
+    } else {
+      $('.shopping-bag-order').css('pointer-events', 'all')
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.cart.length < 1) {
+      $('.shopping-bag-order').css('pointer-events', 'none')
+    } else {
+      $('.shopping-bag-order').css('pointer-events', 'all')
+    }
+  }
 
   promoPlusClicked = () => {
     $('.shopping-bag-promo-code').animate({height: '100px'}, 300)
@@ -98,7 +107,7 @@ console.log(this.props.guestinfo);
                 const returnSoaps = soaps.slice(-cartlen).map(soap => soap.id).join(',')
                 let charge = {
                   email: this.props.guestinfo.email,
-                  amount: this.state.promoSubmitted ? this.props.subtotal > 15 ? (this.props.subtotal*.9)*100 : (this.props.total*.9)*100 : this.props.subtotal > 15 ? this.props.subtotal*100 : this.props.total*100,
+                  amount: this.state.promoSubmitted ? this.props.subtotal > 15 ? ((this.props.subtotal*.9)*100).toFixed(0) : ((this.props.total*.9)*100).toFixed(0) : this.props.subtotal > 15 ? (this.props.subtotal*100).toFixed(0) : (this.props.total*100).toFixed(0),
                   description: 'soap purchase',
                   currency: 'USD',
                   confirmation: Date.now().toString(),
@@ -149,7 +158,7 @@ console.log(this.props.guestinfo);
 
       let charge = {
         email: this.props.user.email,
-        amount: this.state.promoSubmitted ? this.props.subtotal > 15 ? (this.props.subtotal*.9)*100 : (this.props.total*.9)*100 : this.props.subtotal > 15 ? this.props.subtotal*100 : this.props.total*100,
+        amount: this.state.promoSubmitted ? this.props.subtotal > 15 ? ((this.props.subtotal*.9)*100).toFixed(0) : ((this.props.total*.9)*100).toFixed(0) : this.props.subtotal > 15 ? (this.props.subtotal*100).toFixed(0) : (this.props.total*100).toFixed(0),
         description: 'soap purchase',
         currency: 'USD',
         confirmation: Date.now().toString(),
@@ -176,21 +185,6 @@ console.log(this.props.guestinfo);
         // }
       })
     }
-        // this.props.replaceCart()
-    // })
-    // .then(resp => resp.json()).then(data => {
-      // console.log(Response());
-      // if(Response().ok) {
-        // console.log('ok');
-// patch req for each soap and change cart_id to null
-
-        // post to orders db with soaps and random confirmation number, then
-        // delete soaps from user's cart if logged in but don't delete soaps or cart_id from soaps in soap db, then
-        // redirect to thank you/confirmation page with conf number page
-      // } else {
-// console.log('not ok');
-      // }
-    // })
 
   }
 
@@ -232,7 +226,7 @@ console.log(this.props.guestinfo);
             {this.state.promoClicked ? <i onClick={this.promoMinusClicked} className="fas fa-minus promo-minus"></i> : <i onClick={this.promoPlusClicked} className="fas fa-plus promo-plus"></i> }
           </div>
           <div className='promo-input'>
-            <input className='promo-apply' onChange={this.promoInput} value={this.state.promoInput} placeholder='PROMO CODE'/>
+            <input style={{width: '55%'}} className='promo-apply' onChange={this.promoInput} value={this.state.promoInput} placeholder='PROMO CODE'/>
             <div onClick={this.promoSubmit} style={{cursor: 'pointer'}}>APPLY</div>
           </div>
           {this.state.promoApproved ? '' : <span className='promo-error'>Promo code {this.state.promoInput} doesn't exist</span>}

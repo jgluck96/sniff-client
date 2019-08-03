@@ -5,7 +5,7 @@ import CarouselItem from '../components/carouselItem'
 class CheckoutCar extends Component {
 
   state = {
-    slide: 566,
+    slide: 595,
     others: [{
       img: '',
       price: 8.60,
@@ -71,16 +71,16 @@ class CheckoutCar extends Component {
 
   next = () => {
     this.setState(prevState => ({
-    slide: prevState.slide -195}))
+    slide: prevState.slide -220}))
   }
   prev = () => this.setState(prevState => ({
-    slide: prevState.slide +195}))
+    slide: prevState.slide +220}))
 
   render(){
     return(
       <div className='carousel-container carousel-checkout'>
         <h2>Others Also Loved</h2>
-        {this.state.slide < 565 ? <i onClick={this.prev} class="fas fa-arrow-circle-left slider-prev"></i> : null}
+        {this.state.slide < 594 ? <i onClick={this.prev} class="fas fa-arrow-circle-left slider-prev"></i> : null}
 
         {this.state.slide > -603 ? <i onClick={this.next} class="fas fa-arrow-circle-right slider-next"></i> : null}
 

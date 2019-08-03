@@ -11,6 +11,13 @@ class Customize extends Component {
   //   step: 1,
   //   layer: 'base'
   // }
+  componentDidMount() {
+      $('.coupon').css('display', 'none')
+  }
+  componentWillUnmount() {
+      $('.coupon').css('display', 'flex')
+  }
+
 
 
   //

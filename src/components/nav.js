@@ -70,9 +70,9 @@ class Nav extends Component {
               <ul className='navbar-nav'>
 
                 <li className='nav-item'>
-                  <a className='nav-link non-cart' href='/'>
+                  <NavLink className='nav-link non-cart' to='/'>
                     Home
-                  </a>
+                  </NavLink>
                 </li>
                 <li className='nav-item'>
                   <div className='nav-link about-nav non-cart' name='about-dropdown'>
@@ -88,9 +88,9 @@ class Nav extends Component {
                   </div>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link non-cart' href='/customize'>
+                  <NavLink className='nav-link non-cart' to='/customize'>
                     Customize
-                  </a>
+                  </NavLink>
                 </li>
                 <li className='nav-item account-container-drop'>
                 {localStorage.getItem('token') ?
@@ -122,10 +122,10 @@ class Nav extends Component {
                   </Fragment>
                 }
                 </li>
-                <li style={{width: '4%'}} className='nav-item'>
-                  <a className='nav-link cart-container' href='/checkout/sniffBag'>
+                <li style={{width: '40px'}} className='nav-item'>
+                  <NavLink className='nav-link cart-container' to='/checkout/sniffBag'>
                     <Cart />
-                  </a>
+                  </NavLink>
                 </li>
 
               </ul>

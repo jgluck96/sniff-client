@@ -36,7 +36,7 @@ class Login extends Component {
       .then(res => res.json())
       .then(data => {
         if (data.errors) {
-          alert(data.errors)
+          this.setState({userErrors: data.errors})
         } else {
           // localStorage.setItem('token', data.token)
           // this.props.login(data.user)

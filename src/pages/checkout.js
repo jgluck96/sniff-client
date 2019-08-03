@@ -8,9 +8,7 @@ import CheckoutCar from '../containers/checkoutCar'
 let guestinfo = ''
 class Checkout extends Component {
 
-  // state = {
-  //
-  // }
+
 
 
   render(){

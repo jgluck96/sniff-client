@@ -1,6 +1,6 @@
 import $ from 'jquery'
 
-export const signmeUp = (user, cart) => {
+export const signmeUp = (user, cart, emailSignup) => {
   return dispatch => {
     fetch('http://localhost:3000/users', {
       method: 'POST',
@@ -9,7 +9,8 @@ export const signmeUp = (user, cart) => {
         "content-type": "application/json"
       },
       body: JSON.stringify({
-        user: user
+        user: user,
+        emailSignup: emailSignup
       })
     })
       .then(res => res.json())
@@ -48,20 +49,33 @@ export const signmeUp = (user, cart) => {
               payload: data.user
             })
             $('#root').removeClass('modal-overflow')
+          } else {
+            dispatch({
+              type: 'SIGNME_UP',
+              payload: data.user
+            })
+            $('#root').removeClass('modal-overflow')
           }
         } else {
           dispatch({
-            type: 'SIGNME_UP',
-            payload: data.user
+            type: 'SIGNUP_ERRORS',
+            payload: data.errors
           })
-          $('#root').removeClass('modal-overflow')
-          console.log(data);
+          // $('#root').removeClass('modal-overflow')
+          // console.log(data);
           // dispatch({
           //   type: '',
           //   payload: data.errors
           // })
         }
       })
+  }
+}
+
+export const clearErrors = () => {
+  return {
+    type: 'SIGNUP_ERRORS',
+    payload: ''
   }
 }
 
