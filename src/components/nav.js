@@ -19,12 +19,19 @@ class Nav extends Component {
         $('.logo-img').css('height', '55px');
         $('.navbar-nav').css('height', '55px')
         $('.about-dropdown').css('marginTop', '35px')
+        $('.spinner-tab').css({'width': '10px', 'height': '6px'})
+        $('.logo-bottom').css('transform-origin', '3px 3px')
+        $('.logo-top').css('transform-origin', '3px 3px')
+        $('.logo-spinner').css({'left': '72px', 'height': '20px'})
       } else {
         $('.navbar').css('height', '80px');
         $('.logo-img').css('height', '80px');
         $('.navbar-nav').css('height', '80px');
         $('.about-dropdown').css('marginTop', '60px')
-
+        $('.spinner-tab').css({'width': '15px', 'height': '9px'})
+        $('.logo-bottom').css('transform-origin', '3.5px 4.3px')
+        $('.logo-top').css('transform-origin', '3.5px 4.3px')
+        $('.logo-spinner').css({'left': '102px', 'height': '25px'})
       }
     });
   }
@@ -57,10 +64,32 @@ class Nav extends Component {
       <div>
         <header>
 
-          <Coupon />
+
           <nav className='navbar fixed-top'>
             <div className='container-fluid'>
             <div className='logo'>
+              <div className='logo-spinner'>
+                <div className='logo-top'>
+                  <div className='spinner-tab'>
+                  </div>
+                  <div className='spinner-tab'>
+                  </div>
+                  <div className='spinner-tab'>
+                  </div>
+                  <div className='spinner-tab'>
+                  </div>
+                </div>
+                <div className='logo-bottom'>
+                  <div className='spinner-tab'>
+                  </div>
+                  <div className='spinner-tab'>
+                  </div>
+                  <div className='spinner-tab'>
+                  </div>
+                  <div className='spinner-tab'>
+                  </div>
+                </div>
+              </div>
               <a className='' href='/'>
                 <img className='logo-img' src={logo} alt=''/>
               </a>
@@ -102,8 +131,7 @@ class Nav extends Component {
                     </div>
                     <div className='about-dropdown'>
                       <div  className='about-dropdown-content'>
-                        <div className='about-tab'><a><span>Profile</span></a></div>
-                        <div className='about-tab about-middle'><a><span>Wishlist</span></a></div>
+                        <div className='about-tab' style={{borderBottom: '1px solid #ccc'}}><a href='/account'><span>Account</span></a></div>
                         <div className='about-tab'><a href='/'><span onClick={this.logout}>Logout</span></a></div>
                       </div>
                     </div>

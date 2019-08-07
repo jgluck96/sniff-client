@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router'
-class Contact extends Component {
+
+class Feedback extends Component {
 
   state = {
     firstName: '',
@@ -23,7 +24,7 @@ class Contact extends Component {
     if (!this.state.email) {
       this.setState({emailError: 'Email address is required.'})
     } else {
-      fetch('http://localhost:3000/contacts', {
+      fetch('http://localhost:3000/feedbacks', {
         method: 'POST',
         headers: {
           'Accepts': 'application/json',
@@ -46,19 +47,20 @@ class Contact extends Component {
     }
   }
 
-  feedbackGo = () => this.props.history.push('/feedback')
+  contactGo = () => this.props.history.push('/contact')
+
 
   render(){
     return(
       <div className='contact-container'>
         <div className='contact-section'>
-          <h1>Contact Us...</h1>
-          <p style={{width: '50%'}}>Our team is here for you 7 days a week. Don't hesitate to reach out to us!</p>
+          <h1>Feedback...</h1>
+          <p style={{width: '50%'}}>Let us know how we're doing, what we can improve and how we can make your experience better. All feedback is respected!</p>
         </div>
         <div className='contact-flex'>
           <div className='contact-left'>
-            <span>Want to leave feedback?</span>
-            <span onClick={this.feedbackGo}>leave feedback</span>
+            <span>Or if you'd like, you can...</span>
+            <span onClick={this.contactGo}>contact us</span>
           </div>
           <div>
             <form>
@@ -93,4 +95,5 @@ class Contact extends Component {
     )
   }
 }
-export default withRouter(Contact)
+
+export default withRouter(Feedback)

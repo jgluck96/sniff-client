@@ -48,7 +48,7 @@ class Footer extends Component {
         })
       }).then(resp => resp.json()).then(email => {
         if (email.message) {
-          this.setState({existError: email.message})
+          this.setState({existError: email.message, submitted: false, email: ''})
         } else {
           this.setState({submitted: true, email: '', existError: '', validError: ''})
         }
@@ -57,6 +57,7 @@ class Footer extends Component {
   }
 
   render(){
+    console.log(this.state.existError);
     return(
       <footer className="footer">
             <div className="py-3 pt-3 bg-gray-200 text-muted">
@@ -94,6 +95,7 @@ class Footer extends Component {
                       <li><a href="/about/how-it-works" className="text-muted">How it works</a></li>
                       <li><a href="/about/who-we-are" className="text-muted">Our story</a></li>
                       <li><a href="/contact" className="text-muted">Contact us</a></li>
+                      <li><a href="/feedback" className="text-muted">Leave feedback</a></li>
                       <li><a href="/" className="text-muted">Home</a></li>
                     </ul>
                   </div>

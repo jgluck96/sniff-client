@@ -4,7 +4,8 @@ import {withRouter} from 'react-router'
 import {openCheckout} from '../actions/modals'
 import {openPaymentPage} from '../actions/checkout'
 import {replaceCart} from '../actions/selections'
-// import {}
+import { PayPalButton } from "react-paypal-button-v2";
+
 import StripeCheckout from 'react-stripe-checkout';
 import logo from "../assets/images/snifflogo.png"
 import $ from 'jquery'
@@ -276,8 +277,11 @@ console.log(this.props.guestinfo);
             <span className='third-parties-border'></span>
             <span className='third-parties-border-co'>OR CHECKOUT WITH</span>
           </div>
-          <div style={{textAlign: 'center', border: '1px solid black',margin: '27px 0 18px', position: 'relative'}}>
-            <span>Paypal</span>
+          <div style={{height: '40px', overflow: 'hidden', pointerEvents: 'none'}}>
+          <PayPalButton
+            amount="0.01"
+            onSuccess={(details, data) => data}
+          />
           </div>
         </div>
       </div>

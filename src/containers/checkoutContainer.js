@@ -36,8 +36,8 @@ class CheckoutContainer extends Component {
       <div className='checkout-content'>
       {this.props.guestco ?
         <Fragment>
-        <div onClick={() => this.props.guestCo(false)}>[--back to cart</div>
-        <form>
+        <span className='back-to-cart' onClick={() => this.props.guestCo(false)}>Back to cart</span>
+        <form style={{marginTop: '12px'}}>
           <div className='row first-last'>
             <div className='first-name'>
               <label>First Name</label >
@@ -53,24 +53,26 @@ class CheckoutContainer extends Component {
             <input className='promo-apply' name="email" id='email-column' value={this.state.email} onChange={this.handleChange}/>
           </div>
           <h4>Shipping Address</h4>
-          <div className='pass-column'>
-            <label>Street address</label >
-            <input className='promo-apply' name="street_address" value={this.state.street_address} onChange={this.handleChange}/>
+          <div className='row first-last'>
+            <div style={{width: '70%'}} className='pass-column'>
+              <label>Street address</label >
+              <input className='promo-apply' name="street_address" value={this.state.street_address} onChange={this.handleChange}/>
+            </div>
+            <div style={{width: '20%'}} className='pass-column'>
+              <label>apt</label >
+              <input className='promo-apply' name="apt" value={this.state.apt} onChange={this.handleChange}/>
+            </div>
           </div>
-          <div className='pass-column'>
-            <label>apt</label >
-            <input className='promo-apply' name="apt" value={this.state.apt} onChange={this.handleChange}/>
-          </div>
-          <div className='csz'>
-            <div className='city'>
+          <div className='row first-last'>
+            <div className='pass-column'>
               <label>City</label >
               <input className='promo-apply' name="city" value={this.state.city} onChange={this.handleChange}/>
             </div>
-            <div className='state'>
+            <div className='pass-column'>
               <label>State</label >
               <input className='promo-apply' name="state" value={this.state.state} onChange={this.handleChange}/>
             </div>
-            <div className='zip'>
+            <div className='pass-column'>
               <label>Zipcode</label >
               <input className='promo-apply' name="zipcode" value={this.state.zipcode} onChange={this.handleChange}/>
             </div>

@@ -11,7 +11,9 @@ import Checkout from './pages/checkout'
 import Contact from './pages/contact'
 import OurStory from './pages/ourStory'
 import HowItWorks from './pages/howItWorks'
+import Account from './pages/account'
 import MiniBag from './components/miniBag'
+import Feedback from './components/feedback'
 import Nav from './components/nav'
 import Footer from './components/footer'
 import {connect} from 'react-redux'
@@ -64,6 +66,8 @@ console.log('maybe');
           <Route path='/about/who-we-are' component={OurStory} />
           <Route path='/contact' component={Contact} />
           <Route path='/how-it-works' component={HowItWorks} />
+          <Route path='/account' component={Account} />
+          <Route path='/feedback' component={Feedback} />
         </Switch>
         {
           this.props.login ?

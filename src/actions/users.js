@@ -93,6 +93,13 @@ export const login = (user) => {
   }
 }
 
+export const updateUser = (user) => {
+  return {
+    type: 'LOGIN',
+    payload: user
+  }
+}
+
 export const autoLogin = () => {
   return (dispatch) => {
     fetch('http://localhost:3000/auto_login', {
