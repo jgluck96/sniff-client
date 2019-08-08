@@ -22,15 +22,15 @@ class Base extends Component {
     return(
       <Fragment>
 
-        <div onClick={this.addItem} id={this.props.id.split(' ')[0]} className={this.props.base.name === this.props.obj.name ? 'custom-select-item base-selection chosen' :'custom-select-item base-selection'}>
+        <div onClick={this.addItem} id={this.props.id.split(' ')[0]} className={this.props.base.name === this.props.obj.name ? 'custom-select-item base-selection chosen base-box' :'custom-select-item base-box base-selection'}>
           <div className='info-box'>
             <span>
             divv
             </span>
           </div>
           <div className='info-container'><span className='info-select'><span>i</span></span></div>
-          <div className='custom-select-item-image'>
-            <img className='custom-select-item-image customm' src={this.props.obj.img} alt=''/>
+          <div className='custom-select-item-image base-height'>
+            <img className='custom-select-item-image base-height customm' src={this.props.obj.img} alt=''/>
           </div>
 
           <p>{this.props.obj.name}<br/><span className='item-price'>+$4.00</span></p>

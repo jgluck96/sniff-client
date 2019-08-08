@@ -1,5 +1,8 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {withRouter} from 'react-router'
+import fluff from '../assets/images/fluff6.svg'
+import fur from '../assets/images/redfur.svg'
+
 
 class Feedback extends Component {
 
@@ -52,6 +55,8 @@ class Feedback extends Component {
 
   render(){
     return(
+      <Fragment>
+      <img style={{width: '100%', position: 'absolute'}} src={fluff} alt=''/>
       <div className='contact-container'>
         <div className='contact-section'>
           <h1>Feedback...</h1>
@@ -92,6 +97,8 @@ class Feedback extends Component {
           </div>
         </div>
       </div>
+      <img style={{width: '100%', transform: 'rotate3d(0, 0, 1, 180deg)', marginBottom:'-3px', marginTop: '-96px'}} src={fur} alt=''/>
+      </Fragment>
     )
   }
 }

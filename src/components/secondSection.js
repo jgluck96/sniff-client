@@ -23,17 +23,17 @@ class Second extends Component {
             <div className='step-process row'>
               <div className='second-section-step'>
                 <span>base</span>
-                <p>Choose your base of the soap, whether you haver dry skin or oily skin we got it all.</p>
+                <p>Choose the base of your soap, whether you have dry skin or oily skin we got it for you.</p>
               </div>
               <i className="fas fa-angle-right arrow"></i>
               <div className='second-section-step'>
                 <span>Scent</span>
-                <p>Choose your scent of the soap, everyone loves to smell like honey.</p>
+                <p>Choose the scent of your soap, why not smell better than everyone else.</p>
               </div>
               <i className="fas fa-angle-right arrow"></i>
               <div className='second-section-step'>
                 <span>Add-on</span>
-                <p>Choose your add-on of the soap, holostic approach.</p>
+                <p>Choose the add-on of your soap, feel the holostic effects.</p>
               </div>
               <i className="fas fa-angle-right arrow"></i>
               <div className='second-section-step'>

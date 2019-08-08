@@ -125,7 +125,7 @@ class Nav extends Component {
                 {localStorage.getItem('token') ?
                   <Fragment>
                     <div className='nav-link account-drop' name='account-dropdown'>
-                      <i class="fas fa-user-circle"></i><i style={{fontSize: '14px', height: '0'}} className="fas fa-caret-down"></i>
+                      <i className="fas fa-user-circle"></i><i style={{fontSize: '14px', height: '0'}} className="fas fa-caret-down"></i>
 
 
                     </div>

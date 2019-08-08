@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Hero from '../components/heroHome'
 import Second from '../components/secondSection'
 import Third from '../components/thirdSection'
+import Fourth from '../components/fourthSection'
 import yellow from '../assets/images/yellowcurve.png'
 
 export default class Home extends Component {
@@ -12,6 +13,7 @@ export default class Home extends Component {
         <Hero />
         <Second />
         <Third />
+        <Fourth />
       </div>
     )
   }

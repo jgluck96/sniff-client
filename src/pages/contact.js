@@ -1,5 +1,8 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {withRouter} from 'react-router'
+import fluff from '../assets/images/fluff6.svg'
+import fur from '../assets/images/redfur.svg'
+
 class Contact extends Component {
 
   state = {
@@ -50,6 +53,9 @@ class Contact extends Component {
 
   render(){
     return(
+    <Fragment>
+    <img style={{width: '100%', position: 'absolute'}} src={fluff} alt=''/>
+
       <div className='contact-container'>
         <div className='contact-section'>
           <h1>Contact Us...</h1>
@@ -90,6 +96,8 @@ class Contact extends Component {
           </div>
         </div>
       </div>
+      <img style={{width: '100%', transform: 'rotate3d(0, 0, 1, 180deg)', marginBottom:'-3px', marginTop: '-96px'}} src={fur} alt=''/>
+    </Fragment>
     )
   }
 }

@@ -236,16 +236,16 @@ console.log(this.props.guestinfo);
         {
           this.props.user &&  this.props.subtotal > 0?
           <StripeCheckout
-            stripeKey="pk_test_07Kgp8Tbt6abc5kUxCD1PyHj00aC3prdqq"
+            stripeKey={process.env.REACT_APP_STRIPE}
             token={this.onToken}
             email={this.props.user.email}
             shippingAddress
             billingAddress={false}
             zipCode={false}
             currency="USD"
-            panelLabel="Give Money"
+            panelLabel="Pay"
             image={logo}
-            description="soap stuff"
+            description="Custom soap"
             name="sniff. soaps"
             amount={this.state.promoSubmitted ? this.props.subtotal > 15 ? ((this.props.subtotal*.9)*100).toFixed(2) : ((this.props.total*.9)*100).toFixed(2) :  this.props.subtotal > 15 ? (this.props.subtotal*100).toFixed(2) : (this.props.total*100).toFixed(2) }
           >
@@ -254,15 +254,15 @@ console.log(this.props.guestinfo);
           :
           this.props.guestco ?
           <StripeCheckout
-            stripeKey="pk_test_07Kgp8Tbt6abc5kUxCD1PyHj00aC3prdqq"
+            stripeKey={process.env.REACT_APP_STRIPE}
             token={this.onToken}
             shippingAddress={false}
             billingAddress={false}
             zipCode={false}
             currency="USD"
-            panelLabel="Purchase"
+            panelLabel="Pay"
             image={logo}
-            description="soap stuff guest"
+            description="Custom soap"
             name="sniff. soaps"
             amount={this.state.promoSubmitted ? this.props.subtotal > 15 ? ((this.props.subtotal*.9)*100).toFixed(2) : ((this.props.total*.9)*100).toFixed(2) :  this.props.subtotal > 15 ? (this.props.subtotal*100).toFixed(2) : (this.props.total*100).toFixed(2) }
           >
