@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Modal from '../components/modal'
 import { login } from '../actions/users'
 import { fetchCart } from '../actions/selections'
+import { guestCo } from '../actions/checkout'
 import {closeModal, openSignup} from '../actions/modals'
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
@@ -64,6 +65,7 @@ class Login extends Component {
         if (data.errors) {
           this.setState({error: 'The email/password is incorrect.'})
         } else {
+          this.props.guestCo(false)
           // localStorage.setItem('token', data.token)
           // this.props.login(data.user)
           console.log(this.props.cart.length);
@@ -82,6 +84,7 @@ class Login extends Component {
                   fragrance2: localsoap.fragrance2,
                   fragrance3: localsoap.fragrance3,
                   addon: localsoap.addon,
+                  image: localsoap.image,
                   quantity: localsoap.quantity,
                   price: localsoap.price,
                   user_id: data.user.id,
@@ -165,4 +168,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {login, openSignup, fetchCart})(Login)
+export default connect(mapStateToProps, {login, openSignup, guestCo, fetchCart})(Login)

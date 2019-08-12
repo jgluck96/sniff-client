@@ -50,7 +50,7 @@ console.log('cdu logged in');
     }
     if (prevState.user !== this.props.user && this.props.user) {
 console.log('maybe');
-      this.props.fetchingCart()
+      
       this.props.fetchCart(this.props.user.id)
     }
   }

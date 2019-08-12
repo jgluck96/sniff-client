@@ -24,30 +24,29 @@ class Hero extends Component {
       this.props.history.push('/customize')
     })
 // ORIGINAL //
-  //   setInterval(() => {
-  //
-  //
-  //   $('.color1').attr('src', colors[0])
-  //   $('.color2').attr('src', colors[1])
-  //   $('.color3').attr('src', colors[2])
-  //   $('.color4').attr('src', colors[3])
-  //   $('.color5').attr('src', colors[4])
-  //   let color = colors.splice(4, 1)
-  //   colors.splice(0, 0, color[0])
-  // }, 700)
+    setInterval(() => {
+
+
+    $('.color1').attr('src', colors[0])
+    $('.color2').attr('src', colors[1])
+    $('.color3').attr('src', colors[2])
+    $('.color4').attr('src', colors[3])
+    $('.color5').attr('src', colors[4])
+    let color = colors.splice(4, 1)
+    colors.splice(0, 0, color[0])
+  }, 700)
 
 //  ORIGINAL //
 
-  const soaps = $('.soap')
-  let idx = 0
-  // while (true) {
-    setInterval(() => {
-      const random = Math.floor(Math.random() * colors.length)
-    const change = $(soaps[idx]).attr('src', colors[random])
-
-    // idx+=1
-  }, 500)
-  // }
+  // const soaps = $('.soap')
+  // let idx = 0
+  // // while (true) {
+  //   setInterval(() => {
+  //     const random = Math.floor(Math.random() * colors.length)
+  //   const change = $(soaps[idx]).attr('src', colors[random])
+  //
+  //   // idx+=1
+  // }, 500)
 
 //     $(function () {
 //     var parent = $(".customize-hero");

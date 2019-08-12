@@ -47,7 +47,7 @@ class ShoppingBagOrder extends Component {
 
   checkingOut = () => {
     if (this.props.guestco) {
-
+        this.props.errors('Please fill out required fields')
       // either push to the stripe component's route or make a reducer to change status of stripe modal to true
       // this.props.history.push('/checkout/order')
       // this.props.openPaymentPage()
@@ -207,7 +207,16 @@ class ShoppingBagOrder extends Component {
     }
   }
 
+  errorCheck = () => {
+    if (this.props.guestinfo.first_name && this.props.guestinfo.last_name && this.props.guestinfo.street_address && this.props.guestinfo.city && this.props.guestinfo.state && this.props.guestinfo.zipcode && this.props.guestinfo.email && this.props.guestinfo.feedback) {
+      console.log(this.props.guestinfo.street_address);
+      return true
+    }
+    return false
+  }
+
   render(){
+    console.log(this.errorCheck())
     return(
       <div className='shopping-bag-order'>
         <div className='shopping-bag-order-summary'>
@@ -257,7 +266,8 @@ class ShoppingBagOrder extends Component {
           <div className='main-checkout-btn'>CHECKOUT</div>
           </StripeCheckout>
           :
-          this.props.guestco ?
+
+          this.props.guestco && this.errorCheck() ?
           <StripeCheckout
             stripeKey={process.env.REACT_APP_STRIPE}
             token={this.onToken}

@@ -40,6 +40,7 @@ export const signmeUp = (user, cart, emailSignup) => {
                   addon: localsoap.addon,
                   quantity: localsoap.quantity,
                   price: localsoap.price,
+                  image: localsoap.image,
                   cart_id: data.user.cart.id
                 })
               })
@@ -47,6 +48,11 @@ export const signmeUp = (user, cart, emailSignup) => {
             dispatch({
               type: 'SIGNME_UP',
               payload: data.user
+            })
+            // this.props.guestCo(false)
+            dispatch({
+              type: 'GUEST_CO',
+              payload: false
             })
             $('#root').removeClass('modal-overflow')
           } else {

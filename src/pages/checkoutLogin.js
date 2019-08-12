@@ -37,7 +37,7 @@ class CheckoutLogin extends Component {
         if (data.errors) {
           alert(data.errors)
         } else {
-          console.log(this.props.cart.length);
+          this.props.guestCo(false)
           if (this.props.cart.length > 0) {
             // const localSoap = JSON.parse(localStorage.getItem('recentlyAdded'))
             this.props.cart.map(localsoap => {
@@ -56,6 +56,7 @@ class CheckoutLogin extends Component {
                   quantity: localsoap.quantity,
                   price: localsoap.price,
                   user_id: data.user.id,
+                  image: localsoap.image,
                   cart_id: data.user.cart.id
                   // order_id: null
                 })
@@ -97,7 +98,7 @@ class CheckoutLogin extends Component {
           </div>
           <div className='email-column'>
             <label>Password</label >
-            <input className='promo-apply' value={this.state.password} name='password' onChange={this.handleChange}/>
+            <input className='promo-apply' type='password' value={this.state.password} name='password' onChange={this.handleChange}/>
           </div>
           <button className='email-signup' onClick={this.handleSubmit}>Login</button>
           <div className='third-parties-co-with'>

@@ -70,6 +70,7 @@ class OrderedSoap extends Component {
   }
 
   render(){
+    console.log(this.props.soap);
     return(
       <div className='ordered-soap'>
         <div className='order-soap-details'>

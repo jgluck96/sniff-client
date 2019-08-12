@@ -9,15 +9,19 @@ let guestinfo = ''
 class Checkout extends Component {
 
 
+  state = {
+    errors: ''
+  }
 
+  setErrors = (error) => this.setState({errors: error});
 
   render(){
     return(
       <Fragment>
       <div className='shopping-bag-container'>
         <div className='shopping-bag-content-order'>
-          <CheckoutContainer/>
-          <ShoppingBagOrder/>
+          <CheckoutContainer clear={this.setErrors} errors={this.state.errors}/>
+          <ShoppingBagOrder errors={this.setErrors}/>
         </div>
       </div>
 

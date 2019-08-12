@@ -135,8 +135,8 @@ class CheckoutItem extends Component {
         <div className='checkout-item-content'>
           <div className='checkout-item-content-data'>
             <span style={{fontWeight:'500', fontSize:'14px', textTransform: 'uppercase', marginBottom: '25px'}}>{this.props.checkoutItem.base}</span>
-            <span style={{fontWeight:'500', fontSize:'13px'}}>Scents: <span style={{fontSize:'13px', color:'#585858'}}>{this.props.checkoutItem.fragrance3 ? this.props.checkoutItem.fragrance1 + ', '+ this.props.checkoutItem.fragrance2 + ', '+ this.props.checkoutItem.fragrance3 : this.props.checkoutItem.fragrance2 ? this.props.checkoutItem.fragrance1 + ', '+ this.props.checkoutItem.fragrance2 : this.props.checkoutItem.fragrance1}</span></span>
-            <span style={{fontWeight:'500', fontSize:'13px'}}>Add-on: <span style={{fontSize:'13px', color:'#585858'}}>{this.props.checkoutItem.addon}</span></span>
+            <span style={{fontWeight:'500', fontSize:'13px'}}>Scents: <span style={{fontSize:'13px', color:'#585858'}}>{this.props.checkoutItem.fragrance1 ? this.props.checkoutItem.fragrance3 ? this.props.checkoutItem.fragrance1 + ', '+ this.props.checkoutItem.fragrance2 + ', '+ this.props.checkoutItem.fragrance3 : this.props.checkoutItem.fragrance2 ? this.props.checkoutItem.fragrance1 + ', '+ this.props.checkoutItem.fragrance2 : this.props.checkoutItem.fragrance1 : 'none'}</span></span>
+            <span style={{fontWeight:'500', fontSize:'13px'}}>Add-on: <span style={{fontSize:'13px', color:'#585858'}}>{this.props.checkoutItem.addon ? this.props.checkoutItem.addon : 'none'}</span></span>
           </div>
           <div className='checkout-item-right'>
             <div className='number-input'>

@@ -2,26 +2,29 @@ import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import OrderItem from '../components/orderItem'
 import OrderAddItem from '../components/orderAddItem'
+import green from '../assets/images/green.PNG'
+import orange from '../assets/images/orange.PNG'
+import red from '../assets/images/red.PNG'
 
 class Orders extends Component {
 
   state = {
     expert: [{
-      img: '',
+      img: green,
       price: 8.60,
       base: 'Actor',
       scents: 'Peppermint, Almond',
       addon: 'Chamomile',
       class: 'soap-add-content'
     }, {
-      img: '',
+      img: orange,
       price: 8.60,
       base: 'Model',
       scents: 'Lavender, Grapefruit',
       addon: 'Red clay',
       class: 'soap-add-content-middle'
     }, {
-      img: '',
+      img: red,
       price: 10.40,
       base: 'Singer',
       scents: 'Rose, Almond, Vanilla',

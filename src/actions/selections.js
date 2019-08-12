@@ -75,10 +75,10 @@ export const replaceCart = (newItems) => {
   }
 }
 
-export const fetchingCart = () => {
+export const fetchingCart = (bool) => {
   return {
     type: 'FETCHING_CART',
-    payload: true,
+    payload: bool,
   }
 }
 
@@ -86,6 +86,7 @@ export const fetchingCart = () => {
 
 export const fetchCart = (userId) => {
   return (dispatch) => {
+    // dispatch({type: 'FETCHING_CART', payload: true})
     fetch('http://localhost:3000/carts')
     .then(res => res.json())
     .then(carts => {
@@ -93,6 +94,7 @@ export const fetchCart = (userId) => {
       // const mySoaps = myRentals.filter(rental => rental.status === 'expiring')
       dispatch({type: 'REPLACE_CART', payload: myCart[0].soaps})
       dispatch({type: 'FETCHING_CART', payload: false})
+      // fetchingCart(false)
     })
   }
 }

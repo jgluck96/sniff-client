@@ -3,6 +3,7 @@ import Orders from '../containers/orders'
 import Settings from '../components/settings'
 import {connect} from 'react-redux'
 import {logout} from '../actions/users'
+import {withRouter} from 'react-router'
 
 class Account extends Component {
 
@@ -36,6 +37,7 @@ class Account extends Component {
   logout = () => {
   localStorage.removeItem("token")
   this.props.logout()
+  this.props.history.push('/')
   }
 
   render(){
@@ -73,7 +75,7 @@ class Account extends Component {
         }
       </Fragment>
       :
-      <div className='loader-bg'>
+      <div className='account-load loader-bg'>
         <div class = "loader">
         </div>
       </div>
@@ -89,4 +91,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps,{logout})(Account)
+export default withRouter(connect(mapStateToProps,{logout})(Account))
