@@ -96,7 +96,7 @@ class Contact extends Component {
           </div>
         </div>
       </div>
-      <img style={{width: '100%', transform: 'rotate3d(0, 0, 1, 180deg)', marginBottom:'-3px', marginTop: '-96px'}} src={fur} alt=''/>
+      <img style={{width: '100%', transform: 'rotate3d(0, 0, 1, 180deg)', marginBottom:'-3px', marginTop: '-76px'}} src={fur} alt=''/>
     </Fragment>
     )
   }

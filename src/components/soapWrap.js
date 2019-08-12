@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Step1 from '../containers/step1'
 import Step2 from '../containers/step2'
 import Step3 from '../containers/step3'
+import yellow from '../assets/images/yellow.PNG'
 import {connect} from 'react-redux'
 import {addToCart, addBase, clearSubtotal, clearFrags, removeFrag, addAddon} from '../actions/selections'
 import {openMinibag} from '../actions/modals'
@@ -52,6 +53,7 @@ class SoapWrap extends Component {
           quantity: this.state.quantity,
           price: (this.props.subtotal*this.state.quantity).toFixed(2),
           user_id: this.props.user.id,
+          image: this.props.addon.photo ? this.props.addon.photo : yellow,
           cart_id: this.props.user.cart.id
         })
       }).then(resp => resp.json()).then(soap => {
@@ -79,6 +81,7 @@ class SoapWrap extends Component {
         'fragrance2':this.props.frag2,
         'fragrance3':this.props.frag3,
         'addon':this.props.addon.name,
+        'image': this.props.addon.photo ? this.props.addon.photo : yellow,
         'uuid': uuidv1()
       }
       oldItems.push(newItem)

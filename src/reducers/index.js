@@ -5,6 +5,7 @@ import addon from './addon'
 import modals from './modals'
 import subtotal from './subtotal'
 import cart from './cart'
+import fetchingCart from './fetchingCart'
 import user from './userReducer'
 import checkout from './checkout'
 import guestco from './guestco'
@@ -18,6 +19,7 @@ export default combineReducers({
   addon,
   modals,
   subtotal,
+  fetchingCart,
   cart,
   user,
   checkout,

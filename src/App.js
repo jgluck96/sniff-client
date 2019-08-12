@@ -19,7 +19,7 @@ import Footer from './components/footer'
 import {connect} from 'react-redux'
 import {autoLogin} from './actions/users'
 import {closeModal} from './actions/modals'
-import {fetchCart} from './actions/selections'
+import {fetchCart, fetchingCart} from './actions/selections'
 import $ from 'jquery'
 
 class App extends Component {
@@ -50,6 +50,7 @@ console.log('cdu logged in');
     }
     if (prevState.user !== this.props.user && this.props.user) {
 console.log('maybe');
+      this.props.fetchingCart()
       this.props.fetchCart(this.props.user.id)
     }
   }
@@ -102,4 +103,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {autoLogin, fetchCart, closeModal})(App);
+export default connect(mapStateToProps, {autoLogin, fetchCart, fetchingCart, closeModal})(App);

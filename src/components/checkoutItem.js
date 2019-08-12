@@ -130,7 +130,7 @@ class CheckoutItem extends Component {
     return(
       <div className='checkout-item'>
         <div className='checkout-item-img'>
-          sniff.
+          <img alt='' src={this.props.checkoutItem.image} />
         </div>
         <div className='checkout-item-content'>
           <div className='checkout-item-content-data'>

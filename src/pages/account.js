@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import Orders from '../containers/orders'
 import Settings from '../components/settings'
 import {connect} from 'react-redux'
@@ -40,11 +40,14 @@ class Account extends Component {
 
   render(){
     return(
-      <div>
+
+      <Fragment>
         <div className='account-bg'>
           <span>You're the boss of your account.</span>
           <div style={{fontSize: '15px'}}>Member since {this.state.member ? this.state.member : null}</div>
         </div>
+        {this.props.user  ?
+              <Fragment>
         <ul className='account-tabs'>
           <li className='account-tab' onClick={this.tabChange2}>
             <div className={!this.state.tab ? 'account-active' : null}>
@@ -62,12 +65,20 @@ class Account extends Component {
             </div>
           </li>
         </ul>
+
         { this.state.tab ?
         <Orders />
         :
         <Settings />
         }
+      </Fragment>
+      :
+      <div className='loader-bg'>
+        <div class = "loader">
+        </div>
       </div>
+    }
+    </Fragment>
     )
   }
 }

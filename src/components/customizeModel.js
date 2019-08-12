@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import * as THREE from "three";
+import {connect} from 'react-redux'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import $ from 'jquery'
 
@@ -9,8 +10,10 @@ const style = {
 };
 
 const white = new THREE.Color("rgb(255, 255, 255, 1)")
+const base = new THREE.Color("rgba(255, 255, 204,1)")
 const black = new THREE.Color("rgb(0, 0, 0)")
-const pink = new THREE.Color("rgb(255,182,193)")
+const clay = new THREE.Color("rgb(255,182,193)")
+const beet = new THREE.Color("rgb(255, 133, 102)")
 
 class Model extends Component {
 
@@ -26,6 +29,15 @@ class Model extends Component {
     window.removeEventListener("resize", this.handleWindowResize);
     window.cancelAnimationFrame(this.requestID);
     this.controls.dispose();
+  }
+
+  componentDidUpdate(prevState) {
+    if (prevState.base !== this.props.base || prevState.addon !== this.props.addon) {
+      this.addCustomSceneObjects();
+      // this.change()
+    } else {
+
+    }
   }
 
   sceneSetup = () => {
@@ -88,9 +100,12 @@ class Model extends Component {
       side: THREE.DoubleSide,
       flatShading: true
     });
+    while(this.scene.children.length > 0){
+    this.scene.remove(this.scene.children[0]);
+}
     // this.cube = new THREE.Mesh(geometry, material);
     this.cubeMat = new THREE.MeshStandardMaterial( {
-      color: white,
+      color: this.props.addon.color ? this.props.addon.color : this.props.base.base ? base : white,
       // envMap: cubeTexture,
       // metalness: 3 / 9,
       roughness: 1 - 3 / 9,
@@ -170,4 +185,11 @@ class Model extends Component {
 //   }
 // }
 
-export default Model
+const mapStateToProps = state => {
+  return {
+    base: state.base,
+    addon: state.addon
+  }
+}
+
+export default connect(mapStateToProps,  null)(Model)

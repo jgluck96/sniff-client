@@ -1,67 +1,74 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import CarouselItem from '../components/carouselItem'
+import purp from '../assets/images/purpsoap.PNG'
+import rpurp from '../assets/images/rpurp.PNG'
+import yellow from '../assets/images/yellow.PNG'
+import green from '../assets/images/green.PNG'
+import orange from '../assets/images/orange.PNG'
+import red from '../assets/images/red.PNG'
+import pink from '../assets/images/pink.PNG'
 
 class CheckoutCar extends Component {
 
   state = {
     slide: 595,
     others: [{
-      img: '',
+      image: pink,
       price: 8.60,
       base: 'Model',
       scents: 'Vanilla, Rose',
       addon: 'Chamomile'
     }, {
-      img: '',
+      image: yellow,
       price: 8.60,
       base: 'Singer',
       scents: 'Grapefruit, Sandalwood',
       addon: 'Fennel'
     }, {
-      img: '',
+      image: green,
       price: 8.60,
       base: 'Actor',
       scents: 'Lime, Sandalwood',
       addon: 'Beet root'
     }, {
-      img: '',
+      image: pink,
       price: 8.60,
       base: 'Actor',
       scents: 'Grapefruit, Rose',
       addon: 'Fennel'
     }, {
-      img: '',
+      image: green,
       price: 8.60,
       base: 'Model',
       scents: 'Almond, Peppermint',
       addon: 'Chamomile'
     }, {
-      img: '',
+      image: yellow,
       price: 8.60,
       base: 'Singer',
       scents: 'Sandalwood, Rose',
       addon: 'Red clay'
     }, {
-      img: '',
+      image: rpurp,
       price: 6.80,
       base: 'Actor',
       scents: 'Lavender',
       addon: 'Chamomile'
     }, {
-      img: '',
+      image: pink,
       price: 8.60,
       base: 'Singer',
       scents: 'Sandalwood, Rose',
       addon: 'Beet root'
     }, {
-      img: '',
+      image: yellow,
       price: 8.60,
       base: 'Model',
       scents: 'Vanilla, Almond',
       addon: 'Red clay'
     }, {
-      img: '',
+      image: yellow,
       price: 6.80,
       base: 'Model',
       scents: 'Vanilla',

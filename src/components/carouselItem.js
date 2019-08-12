@@ -28,7 +28,8 @@ class CarouselItem extends Component {
           quantity: this.state.quantity,
           price: (this.props.soap.price).toFixed(2),
           user_id: this.props.user.id,
-          cart_id: this.props.user.cart.id
+          cart_id: this.props.user.cart.id,
+          image: this.props.soap.image
         })
       }).then(resp => resp.json()).then(soap => {
         const currentSoap = [soap]
@@ -53,6 +54,7 @@ class CarouselItem extends Component {
         'fragrance2': scents.length >= 2 ? scents[1] : '',
         'fragrance3': scents.length === 3 ? scents[2] : '',
         'addon': this.props.soap.addon,
+        'image': this.props.soap.image,
         'uuid': uuidv1()
       }
       oldItems.push(newItem)
@@ -71,7 +73,7 @@ class CarouselItem extends Component {
     return(
       <div className={this.props.class}>
         <div className='carousel-cart-cont'><i onClick={this.addToCart} className='fas fa-plus plus-cart'></i></div>
-        <img src={this.props.soap.img} alt=''/>
+        <img src={this.props.soap.image} alt=''/>
         <div className='carousel-content'>
           <h4>{this.props.soap.base}</h4>
           <span>{this.props.soap.scents}</span>

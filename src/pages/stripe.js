@@ -45,7 +45,6 @@ class Stripe extends Component {
     return(
 
       <StripeCheckout
-        stripeKey="pk_test_07Kgp8Tbt6abc5kUxCD1PyHj00aC3prdqq"
         token={this.onToken}
       />
 

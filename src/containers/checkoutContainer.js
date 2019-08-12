@@ -34,6 +34,7 @@ class CheckoutContainer extends Component {
   render(){
     return(
       <div className='checkout-content'>
+
       {this.props.guestco ?
         <Fragment>
         <span className='back-to-cart' onClick={() => this.props.guestCo(false)}>Back to cart</span>
@@ -97,7 +98,9 @@ class CheckoutContainer extends Component {
         :
         <Fragment>
         <div className='title' style={{fontWeight: '500'}}>Sniff. Bag ({this.props.cart.length})</div>
-          {
+          {this.props.fetchingCart ?
+            <div className='loader-bg'><div className='loader'></div></div>
+            :
             this.props.cart.length > 0 ?
             <Fragment>
             {
@@ -121,6 +124,7 @@ class CheckoutContainer extends Component {
 const mapStateToProps = state => {
   return {
     cart: state.cart,
+    fetchingCart: state.fetchingCart,
     paymentPage: state.checkout,
     guestco: state.guestco
   }

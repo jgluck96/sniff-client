@@ -8,8 +8,7 @@ import yellow from '../assets/images/yellowcurve.png'
 export default class Home extends Component {
   render(){
     return(
-      <div style={{paddingTop: '75px'}}>
-        <img style={{position: 'absolute', top: '53px', width: '100%'}} src={yellow} alt=''/>
+      <div style={{paddingTop: '0px'}}>
         <Hero />
         <Second />
         <Third />

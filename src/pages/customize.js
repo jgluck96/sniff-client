@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import Model from '../components/customizeModel'
 import Soap from '../components/customizeSoap'
+import yellow from '../assets/images/yellow.PNG'
+
 import $ from 'jquery'
 
 import {connect} from 'react-redux'
@@ -47,7 +49,7 @@ class Customize extends Component {
           <Soap />
         </div>
         <div className='row selections'>
-          <div className='your-selection'>{this.props.base.base ? <img className='selection-image' src={this.props.base.img} alt=''/> : null}</div>
+          <div className='your-selection'>{this.props.base.base ? <img className='selection-image' src={yellow} alt=''/> : null}</div>
           <div className='your-selection'>{this.props.frag.frag1 ? <img className='selection-image' src={this.props.frag.frag1.img} alt=''/> : null}</div>
           <div className='your-selection'>{this.props.frag.frag2 ? <img className='selection-image' src={this.props.frag.frag2.img} alt=''/> : null}</div>
           <div className='your-selection'>{this.props.frag.frag3 ? <img className='selection-image' src={this.props.frag.frag3.img} alt=''/> : null}</div>

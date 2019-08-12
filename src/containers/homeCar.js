@@ -1,7 +1,9 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import CarouselItem from '../components/carouselItem'
-
+import rpurp from '../assets/images/rpurp.PNG'
+import green from '../assets/images/green.PNG'
+import pink from '../assets/images/pink.PNG'
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
@@ -13,19 +15,19 @@ class HomeCar extends Component {
 
   state = {
     expert: [{
-      img: '',
+      image: green,
       price: 8.60,
       base: 'Actor',
       scents: 'Peppermint, Almond',
       addon: 'Chamomile'
     }, {
-      img: '',
+      image: rpurp,
       price: 8.60,
       base: 'Model',
       scents: 'Lavender, Grapefruit',
       addon: 'Red clay'
     }, {
-      img: '',
+      image: pink,
       price: 10.40,
       base: 'Singer',
       scents: 'Rose, Almond, Vanilla',

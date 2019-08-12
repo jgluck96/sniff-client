@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {addBase, addSubtotal} from '../actions/selections'
+import yellow from '../assets/images/yellow.PNG'
+
 import $ from 'jquery'
 
 class Base extends Component {
@@ -10,7 +12,7 @@ class Base extends Component {
   }
 
   addItem = () => {
-      const selection = {base: true, name: this.props.id, img: this.props.obj.img, price: 4}
+      const selection = {base: true, name: this.props.id, img: yellow, price: 4}
       this.props.addBase(selection)
 
       if (!this.props.base.base) {
@@ -30,7 +32,7 @@ class Base extends Component {
           </div>
           <div className='info-container'><span className='info-select'><span>i</span></span></div>
           <div className='custom-select-item-image base-height'>
-            <img className='custom-select-item-image base-height customm' src={this.props.obj.img} alt=''/>
+            <img className='custom-select-item-image base-height customm' src={yellow} alt=''/>
           </div>
 
           <p>{this.props.obj.name}<br/><span className='item-price'>+$4.00</span></p>

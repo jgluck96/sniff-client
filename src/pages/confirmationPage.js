@@ -13,6 +13,8 @@ class Confirmation extends Component {
           <h1>Thank you for your order!</h1>
           <div style={{fontSize: '20px'}}>Your order confirmation number is: #{this.state.confirmation}</div>
           <div>Total: ${(parseFloat(this.state.total)/100).toFixed(2)}</div>
+          <h3>Shipping Address</h3>
+          <div>{this.state.address}</div>
         </div>
         <CheckoutCar />
       </div>

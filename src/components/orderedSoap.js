@@ -28,6 +28,7 @@ class OrderedSoap extends Component {
           addon: this.props.soap.addon,
           quantity: this.state.quantity,
           price: this.props.soap.price,
+          image: this.props.soap.image,
           user_id: this.props.user.id,
           cart_id: this.props.user.cart.id
         })
@@ -42,34 +43,39 @@ class OrderedSoap extends Component {
 
       }).then(this.props.openMinibag())
 
-    } else {
-      const oldItems = JSON.parse(localStorage.getItem('recentlyAdded')) || [];
-      const newItem = {
-        'item': 'Soap',
-        'price':this.props.soap.price,
-        'quantity': this.state.quantity,
-        'base': this.props.soap.base,
-        'fragrance1': scents.length >= 1 ? scents[0] : '',
-        'fragrance2': scents.length >= 2 ? scents[1] : '',
-        'fragrance3': scents.length === 3 ? scents[2] : '',
-        'addon': this.props.soap.addon,
-        'uuid': uuidv1()
-      }
-      oldItems.push(newItem)
-      localStorage.setItem('recentlyAdded', JSON.stringify(oldItems));
-      this.props.addToCart(newItem);
-      this.props.addBase({})
-      this.props.clearFrags()
-      this.props.addAddon({})
-      this.props.clearSubtotal(0.00)
-      this.props.openMinibag()
     }
+    // else {
+    //   const oldItems = JSON.parse(localStorage.getItem('recentlyAdded')) || [];
+    //   const newItem = {
+    //     'item': 'Soap',
+    //     'price':this.props.soap.price,
+    //     'quantity': this.state.quantity,
+    //     'base': this.props.soap.base,
+    //     'fragrance1': scents.length >= 1 ? scents[0] : '',
+    //     'fragrance2': scents.length >= 2 ? scents[1] : '',
+    //     'fragrance3': scents.length === 3 ? scents[2] : '',
+    //     'addon': this.props.soap.addon,
+    //
+    //     'uuid': uuidv1()
+    //   }
+    //   oldItems.push(newItem)
+    //   localStorage.setItem('recentlyAdded', JSON.stringify(oldItems));
+    //   this.props.addToCart(newItem);
+    //   this.props.addBase({})
+    //   this.props.clearFrags()
+    //   this.props.addAddon({})
+    //   this.props.clearSubtotal(0.00)
+    //   this.props.openMinibag()
+    // }
   }
 
   render(){
     return(
       <div className='ordered-soap'>
         <div className='order-soap-details'>
+          <div className='checkout-item-img'>
+            <img alt='' src={this.props.soap.image} />
+          </div>
           <div className='order-base'><span style={{fontWeight: 'bold'}}>Base: </span>{this.props.soap.base}</div>
           <div className='order-scents'><span style={{fontWeight: 'bold'}}>Scents: </span>{this.props.soap.fragrance3 ? this.props.soap.fragrance1 + ', '+ this.props.soap.fragrance2 + ', '+ this.props.soap.fragrance3 : this.props.soap.fragrance2 ? this.props.soap.fragrance1 + ', '+ this.props.soap.fragrance2 : this.props.soap.fragrance1}</div>
           <div className='order-addon'><span style={{fontWeight: 'bold'}}>Addon: </span>{this.props.soap.addon}</div>

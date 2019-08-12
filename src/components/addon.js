@@ -6,7 +6,7 @@ import {addAddon, removeAddon, removeSubtotal, addSubtotal} from '../actions/sel
 class Addon extends Component {
 
   addItem = () => {
-    const selection = {addon: true, name: this.props.id, img: this.props.obj.img, price: 1}
+    const selection = {addon: true, name: this.props.id, img: this.props.obj.img, photo: this.props.obj.photo, color: this.props.obj.color, price: 1}
 
     if (this.props.addon.name === this.props.id) {
       this.props.removeAddon(selection)

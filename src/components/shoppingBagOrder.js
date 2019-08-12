@@ -7,7 +7,7 @@ import {replaceCart} from '../actions/selections'
 import { PayPalButton } from "react-paypal-button-v2";
 
 import StripeCheckout from 'react-stripe-checkout';
-import logo from "../assets/images/snifflogo.png"
+import logo from "../assets/images/pinwheel.png"
 import $ from 'jquery'
 
 class ShoppingBagOrder extends Component {
@@ -57,7 +57,6 @@ class ShoppingBagOrder extends Component {
   }
 
   onToken = (token, args) => {
-console.log(this.props.guestinfo);
     if (this.props.guestco) {
 
       if (this.props.cart.length > 0) {
@@ -74,6 +73,7 @@ console.log(this.props.guestinfo);
               last_name: this.props.guestinfo.last_name,
               email: this.props.guestinfo.email,
               phone: this.props.guestinfo.phone,
+
               feedback: this.props.guestinfo.feedback,
               guest: true
             })
@@ -138,7 +138,7 @@ console.log(this.props.guestinfo);
                       )
                     }).then(resp => resp.json()).then(order2 =>{
                       console.log(order2);
-                      this.props.history.push('/order-confirmation', {confirmation: order2.confirmation, total: order2.price*100})
+                      this.props.history.push('/order-confirmation', {confirmation: order2.confirmation, address: `${order2.street_address} ${order2.apt}, ${order2.city}, ${order2.state} ${order2.zipcode}`, total: order2.price*100})
                       localStorage.removeItem('recentlyAdded')
                       this.props.replaceCart([])
                     })
@@ -165,6 +165,7 @@ console.log(this.props.guestinfo);
         confirmation: Date.now().toString(),
         userId: this.props.user.id,
         soaps: soaps,
+        address: this.address(args),
         stripeToken: token.id
       }
       fetch('http://localhost:3000/charges', {
@@ -179,7 +180,7 @@ console.log(this.props.guestinfo);
       }).then(resp => resp.json()).then(order => {
         console.log(order);
         // if (order.ok) {
-          this.props.history.push('/order-confirmation', {confirmation: order.confirmation, total: parseFloat(order.total)*100})
+          this.props.history.push('/order-confirmation', {confirmation: order.confirmation, address: order.address, total: parseFloat(order.total)*100})
           this.props.replaceCart([])
         // } else {
 
@@ -187,6 +188,10 @@ console.log(this.props.guestinfo);
       })
     }
 
+  }
+
+  address = (metadata) => {
+    return `${metadata.shipping_address_line1}, ${metadata.shipping_address_city}, ${metadata.shipping_address_state} ${metadata.shipping_address_zip} ${metadata.shipping_address_country}`
   }
 
   promoInput = (e) => {
@@ -239,9 +244,9 @@ console.log(this.props.guestinfo);
             stripeKey={process.env.REACT_APP_STRIPE}
             token={this.onToken}
             email={this.props.user.email}
-            shippingAddress
-            billingAddress={false}
-            zipCode={false}
+            shippingAddress={true}
+            billingAddress={true}
+            zipCode={true}
             currency="USD"
             panelLabel="Pay"
             image={logo}
