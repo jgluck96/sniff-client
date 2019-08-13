@@ -1326,6 +1326,46 @@ label {
   /* transition: transform 1500ms */
 }
 
+.signin-fb {
+  margin-right: 10px;
+  padding: 9px;
+  border-radius: 2px;
+  font-size: 24px !important;
+}
+
+.facebook-btn {
+  background-color: #3B5998;
+  display: inline-flex;
+  align-items: center;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+  padding: 0px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  font-size: 16px;
+  width: 100%;
+  font-weight: 500;
+  font-family: 'Song Myung', serif
+}
+
+.facebook-btn:hover {
+  cursor: pointer;
+  opacity: 0.9
+}
+
+.google-btn {
+  background-color: rgb(255, 255, 255) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  color: rgba(0, 0, 0, 0.54) !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px !important;
+  padding: 0px !important;
+  border-radius: 2px !important;
+  border: 1px solid transparent !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  font-family: 'Song Myung', serif !important
+}
 
 /* CUSTOM SCROLLBAR */
 /* body::-webkit-scrollbar {
@@ -2451,12 +2491,12 @@ left: 17px !important;
 .about-tab {
   padding: 15px 35px 15px 5px;
 }
-.about-dropdown a {
+.about-dropdown-link {
   padding: 9px;
   text-decoration: none;
   color: black
 }
-.account-dropdown a {
+.account-dropdown-link {
   padding: 9px;
   text-decoration: none;
   color: black
@@ -2667,13 +2707,14 @@ left: 17px !important;
 }
 
 .shopping-bag-container {
-  padding: calc(50px + 50px) 20px 0px 20px
+  padding: calc(50px + 50px) 85px 0px 85px
 }
 
 .shopping-bag-content-order {
   margin-top: 25px;
   display: flex;
-  max-width: 1000px;
+  max-width: 1025px;
+  justify-content: space-evenly;
   margin-left: auto;
   margin-right: auto;
 }
@@ -2966,8 +3007,8 @@ left: 17px !important;
 .carousel-checkout {
   flex-direction: column;
   /* align-items: normal; */
-  margin-left: 50px;
-  margin-right: 50px;
+  /* margin-left: 50px;
+  margin-right: 50px; */
   padding-top: 80px;
   /* padding-bottom: 50px; */
   margin-bottom: 75px;

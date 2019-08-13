@@ -115,7 +115,7 @@ class CheckoutContainer extends Component {
         :
         <Fragment>
         <div className='title' style={{fontWeight: '500'}}>Sniff. Bag ({this.props.cart.length})</div>
-          {this.props.fetchingCart && !localStorage.getItem('recentlyAdded')?
+          {this.props.fetchingCart && localStorage.getItem('token')?
             <div className='loader-bg'><div className='loader'></div></div>
             :
             this.props.cart.length > 0 ?

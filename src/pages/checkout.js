@@ -8,6 +8,9 @@ import CheckoutCar from '../containers/checkoutCar'
 let guestinfo = ''
 class Checkout extends Component {
 
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
 
   state = {
     errors: ''
@@ -24,9 +27,9 @@ class Checkout extends Component {
           <ShoppingBagOrder errors={this.setErrors}/>
         </div>
       </div>
-
-          <CheckoutCar />
-
+      <div style={{paddingLeft: '85px', paddingRight: '85px'}}>
+        <CheckoutCar />
+      </div>
       </Fragment>
     )
   }

@@ -10,14 +10,20 @@ class Account extends Component {
   // state = this.props.location.state
   state = {
     tab: false,
-    member: this.props.user
+    member: ''
   }
 
   componentDidMount() {
+    window.scrollTo(0,0);
     // const member = new Date(this.props.user.created_at).toDateString().split(' ').slice(1,4)
     // member[1] = member[1] + ','
     // this.setstate({member: member.join(' ')})
     // this.setState({member: this.props.user})
+    if (this.props.user) {
+      const member = new Date(this.props.user.created_at).toDateString().split(' ').slice(1,4)
+      member[1] = member[1] + ','
+      this.setState({member: member.join(' ')})
+    }
   }
   componentDidUpdate(prevState) {
 
@@ -37,7 +43,13 @@ class Account extends Component {
   logout = () => {
   localStorage.removeItem("token")
   this.props.logout()
+  if (window.FB) {
+    const fb = localStorage.getItem('FB_id')
+    window.FB.logout(fb)
+  }
+  localStorage.removeItem("FB_id")
   this.props.history.push('/')
+
   }
 
   render(){

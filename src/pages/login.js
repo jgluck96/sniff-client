@@ -110,8 +110,85 @@ class Login extends Component {
     }
   }
 
+  getRand = () => {
+    const dateRand = new Date().getTime().toString() + Math.floor(Math.random()*1000000);
+    return dateRand
+  }
+
   responseGoogle = (response) => {
-    // console.log(response);
+    console.log(response);
+    if (!response.error) {
+      // localStorage.setItem('FB_id', response.accessToken)
+      const firstName = response.profileObj.givenName
+      const lastName = response.profileObj.familyName
+      fetch('http://localhost:3000/oauth', {
+        method: 'POST',
+        headers: {
+          'Accepts': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          user: {
+            email: response.profileObj.email,
+            first_name: firstName,
+            last_name: lastName,
+            password: this.getRand()
+          }
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.errors) {
+            // this.setState({error: data.errors})
+            console.log(data.errors);
+          } else {
+            this.props.guestCo(false)
+            // localStorage.setItem('token', data.token)
+            // this.props.login(data.user)
+            console.log(this.props.cart.length);
+            if (this.props.cart.length > 0) {
+              // const localSoap = JSON.parse(localStorage.getItem('recentlyAdded'))
+              this.props.cart.map(localsoap => {
+                fetch('http://localhost:3000/soaps', {
+                  method: 'POST',
+                  headers: {
+                    'Accepts': 'application/json',
+                    'Content-type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    base: localsoap.base,
+                    fragrance1: localsoap.fragrance1,
+                    fragrance2: localsoap.fragrance2,
+                    fragrance3: localsoap.fragrance3,
+                    addon: localsoap.addon,
+                    image: localsoap.image,
+                    quantity: localsoap.quantity,
+                    price: localsoap.price,
+                    user_id: data.user.id,
+                    cart_id: data.user.cart.id
+                    // order_id: null
+                  })
+                }).then(resp => {
+                  localStorage.setItem('token', data.token)
+                  this.props.login(data.user)
+                  // this.props.closeModal()
+                  $('#root').removeClass('modal-overflow')
+
+                })
+              })
+            } else {
+              localStorage.setItem('token', data.token)
+              this.props.login(data.user)
+              // this.props.closeModal()
+              $('#root').removeClass('modal-overflow')
+
+            }
+            // this.props.closeModal()
+            // document.getElementById('root').setAttribute('class', '')
+            // this.props.history.push('/')
+          }
+        })
+      }
   }
 
   responseFacebook = (response) => {
@@ -132,7 +209,7 @@ class Login extends Component {
             email: response.email,
             first_name: firstName,
             last_name: lastName,
-            password: response.userID
+            password: this.getRand()
           }
         })
       })
@@ -199,17 +276,22 @@ class Login extends Component {
             <h1 style={{fontSize: '40px', marginBottom: '8px'}}>Login...</h1>
             <div className="OAuth-login">
               <GoogleLogin
-                clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                buttonText="Login"
-                onSuccess={this.responseGoogle}
-                onFailure={this.responseGoogle}
+                clientId={process.env.REACT_APP_GOOGLE}
+                buttonText="Continue with Google"
+                className='google-btn'
+                onSuccess={this.responseGoogle.bind(this)}
+                onFailure={this.responseGoogle.bind(this)}
                 cookiePolicy={'single_host_origin'}
               />
               <FacebookLogin
               appId={process.env.REACT_APP_FB}
               autoLoad={false}
               fields="name,email"
-              callback={this.responseFacebook} />
+              textButton='Continue with Facebook'
+              icon="fab fa-facebook-square signin-fb"
+              cssClass='facebook-btn'
+              callback={this.responseFacebook}
+              />
             </div>
           </div>
         </div>

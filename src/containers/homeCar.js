@@ -17,19 +17,19 @@ class HomeCar extends Component {
     expert: [{
       image: green,
       price: 8.60,
-      base: 'Actor',
+      base: 'Dry Skin',
       scents: 'Peppermint, Almond',
       addon: 'Chamomile'
     }, {
       image: rpurp,
       price: 8.60,
-      base: 'Model',
+      base: 'Normal Skin',
       scents: 'Lavender, Grapefruit',
       addon: 'Red clay'
     }, {
       image: pink,
       price: 10.40,
-      base: 'Singer',
+      base: 'Oily Skin',
       scents: 'Rose, Almond, Vanilla',
       addon: 'Fennel'
     }]

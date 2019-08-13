@@ -22,6 +22,8 @@ import {autoLogin} from './actions/users'
 import {closeModal} from './actions/modals'
 import {fetchCart, fetchingCart} from './actions/selections'
 import $ from 'jquery'
+import {withRouter} from 'react-router'
+
 
 class App extends Component {
 
@@ -30,6 +32,7 @@ class App extends Component {
       console.log('checkit cdm');
       this.props.autoLogin()
       this.props.closeModal()
+
       // setTimeout(() => this.props.fetchCart(this.props.user.id), 3000)
     }
   }
@@ -44,6 +47,7 @@ class App extends Component {
   // }
 
   componentDidUpdate(prevState) {
+
     if (prevState.user !== this.props.user && localStorage.getItem('token')) {
 console.log('cdu logged in');
       this.props.closeModal()
@@ -60,7 +64,7 @@ console.log('maybe');
     return (
       <React.Fragment>
         <Nav />
-        <Switch>
+        <Switch onUpdate={() => window.scrollTo(0, 0)}>
           <Route exact path='/' component={Home} />
           <Route path='/customize' component={Customize} />
           <Route path='/checkout/sniffBag' component={Checkout} />
@@ -94,7 +98,6 @@ console.log('maybe');
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     login: state.modals.login,
     signup: state.modals.signup,
@@ -105,4 +108,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {autoLogin, fetchCart, fetchingCart, closeModal})(App);
+export default withRouter(connect(mapStateToProps, {autoLogin, fetchCart, fetchingCart, closeModal})(App));

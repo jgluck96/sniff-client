@@ -3,15 +3,10 @@ import {connect} from 'react-redux'
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import Modal from '../components/modal'
-import {signmeUp, clearErrors} from '../actions/users'
+import {signmeUp, clearErrors, login} from '../actions/users'
+import {guestCo} from '../actions/checkout'
 import {openLogin} from '../actions/modals'
 import $ from 'jquery'
-
-const responseGoogle = (response) => {
-  // console.log(response);
-}
-
-
 
 class Signup extends Component {
 
@@ -69,13 +64,13 @@ class Signup extends Component {
       guest: false
     }, this.props.cart, this.state.emailSignup)
     if (!this.props.signupErrors) {
-      this.setState({
+      setTimeout(() => this.setState({
         email: '',
         password: '',
         first_name: '',
         last_name: '',
         feedback: ''
-      })
+      }), 1500)
     }
     }
   }
@@ -86,6 +81,87 @@ class Signup extends Component {
 
   emailSignupBtn = () => {
     this.setState({emailSignup: !this.state.emailSignup})
+  }
+
+  getRand = () => {
+    const dateRand = new Date().getTime().toString() + Math.floor(Math.random()*1000000);
+    return dateRand
+  }
+
+  responseGoogle = (response) => {
+    console.log(response);
+    if (!response.error) {
+      // localStorage.setItem('FB_id', response.accessToken)
+      const firstName = response.profileObj.givenName
+      const lastName = response.profileObj.familyName
+      fetch('http://localhost:3000/oauth', {
+        method: 'POST',
+        headers: {
+          'Accepts': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          user: {
+            email: response.profileObj.email,
+            first_name: firstName,
+            last_name: lastName,
+            password: this.getRand()
+          }
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.errors) {
+            // this.setState({error: data.errors})
+            console.log(data.errors);
+          } else {
+            this.props.guestCo(false)
+            // localStorage.setItem('token', data.token)
+            // this.props.login(data.user)
+            console.log(this.props.cart.length);
+            if (this.props.cart.length > 0) {
+              // const localSoap = JSON.parse(localStorage.getItem('recentlyAdded'))
+              this.props.cart.map(localsoap => {
+                fetch('http://localhost:3000/soaps', {
+                  method: 'POST',
+                  headers: {
+                    'Accepts': 'application/json',
+                    'Content-type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    base: localsoap.base,
+                    fragrance1: localsoap.fragrance1,
+                    fragrance2: localsoap.fragrance2,
+                    fragrance3: localsoap.fragrance3,
+                    addon: localsoap.addon,
+                    image: localsoap.image,
+                    quantity: localsoap.quantity,
+                    price: localsoap.price,
+                    user_id: data.user.id,
+                    cart_id: data.user.cart.id
+                    // order_id: null
+                  })
+                }).then(resp => {
+                  localStorage.setItem('token', data.token)
+                  this.props.login(data.user)
+                  // this.props.closeModal()
+                  $('#root').removeClass('modal-overflow')
+
+                })
+              })
+            } else {
+              localStorage.setItem('token', data.token)
+              this.props.login(data.user)
+              // this.props.closeModal()
+              $('#root').removeClass('modal-overflow')
+
+            }
+            // this.props.closeModal()
+            // document.getElementById('root').setAttribute('class', '')
+            // this.props.history.push('/')
+          }
+        })
+      }
   }
 
   responseFacebook = (response) => {
@@ -106,7 +182,7 @@ class Signup extends Component {
             email: response.email,
             first_name: firstName,
             last_name: lastName,
-            password: response.userID
+            password: this.getRand()
           }
         })
       })
@@ -221,17 +297,22 @@ class Signup extends Component {
                 <h1 style={{fontSize: '40px'}}>Sign up...</h1>
                 <div className="OAuth-login">
                   <GoogleLogin
-                    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                    buttonText="Login"
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
+                    clientId={process.env.REACT_APP_GOOGLE}
+                    buttonText="Continue with Google"
+                    onSuccess={this.responseGoogle.bind(this)}
+                    onFailure={this.responseGoogle.bind(this)}
+                    className='google-btn'
                     cookiePolicy={'single_host_origin'}
                   />
                   <FacebookLogin
                   appId={process.env.REACT_APP_FB}
                   autoLoad={false}
                   fields="name,email"
-                  callback={this.responseFacebook} />
+                  textButton='Continue with Facebook'
+                  callback={this.responseFacebook}
+                  icon="fab fa-facebook-square signin-fb"
+                  cssClass='facebook-btn'
+                  />
                 </div>
               </div>
             </div>
@@ -272,7 +353,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {openLogin, signmeUp, clearErrors})(Signup)
+export default connect(mapStateToProps, {openLogin, signmeUp, guestCo, login, clearErrors})(Signup)
 
 // animate
 // <div id='curve1' className='curve'>

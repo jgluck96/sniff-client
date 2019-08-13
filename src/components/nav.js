@@ -51,8 +51,11 @@ class Nav extends Component {
   localStorage.removeItem("token")
   this.props.logout()
     if (window.FB) {
-      window.FB.logout(localStorage.getItem('FB_id'))
+      const fb = localStorage.getItem('FB_id')
+      window.FB.logout(fb)
     }
+    localStorage.removeItem("FB_id")
+
   }
   //
   // scrollTo = () => {
@@ -93,9 +96,9 @@ class Nav extends Component {
                   </div>
                 </div>
               </div>
-              <a className='' href='/'>
+              <NavLink className='' to='/'>
                 <img className='logo-img' src={logo} alt=''/>
-              </a>
+              </NavLink>
 
             </div>
 
@@ -113,9 +116,9 @@ class Nav extends Component {
                   </div>
                   <div className='about-dropdown'>
                     <div className='about-dropdown-content'>
-                      <div onClick={this.scrollTo} className='about-tab'><a href='/how-it-works'><span>How it works</span></a></div>
-                      <div className='about-tab about-middle'><a href='/about/who-we-are'><span>Our story</span></a></div>
-                      <div className='about-tab'><a href='/contact'><span>Contact us</span></a></div>
+                      <div onClick={this.scrollTo} className='about-tab'><NavLink className='account-dropdown-link' to='/how-it-works'><span>How it works</span></NavLink></div>
+                      <div className='about-tab about-middle'><NavLink className='account-dropdown-link' to='/about/who-we-are'><span>Our story</span></NavLink></div>
+                      <div className='about-tab'><NavLink className='account-dropdown-link' to='/contact'><span>Contact us</span></NavLink></div>
                     </div>
                   </div>
                 </li>
@@ -134,8 +137,8 @@ class Nav extends Component {
                     </div>
                     <div className='about-dropdown'>
                       <div  className='about-dropdown-content'>
-                        <div className='about-tab' style={{borderBottom: '1px solid #ccc'}}><a href='/account'><span>Account</span></a></div>
-                        <div className='about-tab'><a href='/'><span onClick={this.logout}>Logout</span></a></div>
+                        <div className='about-tab' style={{borderBottom: '1px solid #ccc'}}><NavLink className='account-dropdown-link' to='/account'><span>Account</span></NavLink></div>
+                        <div className='about-tab'><NavLink className='account-dropdown-link' to='/'><span onClick={this.logout}>Logout</span></NavLink></div>
                       </div>
                     </div>
 
@@ -165,7 +168,7 @@ class Nav extends Component {
           {this.props.user && !this.props.user.verified ?
             <div className='verify'>Please verify your account!</div>
             :
-            <div className='verify'>Please verify your account fake!</div>
+            ''
           }
         </header>
       </div>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {NavLink} from 'react-router-dom'
 import {openLogin, openSignup} from '../actions/modals'
 import {logout} from '../actions/users'
 
@@ -76,27 +77,27 @@ class Footer extends Component {
                     <h6 className="text-uppercase text-dark mb-3">Account</h6>
                     {this.props.user ?
                     <ul className="list-unstyled">
-                      <li><a href="/account" className="text-muted">My profile</a></li>
-                      <li><a href='/checkout/sniffBag' className="text-muted">Cart</a></li>
-                      <li onClick={this.logout}><a href='/' className="text-muted">Log out</a></li>
+                      <li><NavLink to="/account" className="text-muted footer-tab">My profile</NavLink></li>
+                      <li><NavLink to='/checkout/sniffBag' className="text-muted footer-tab">My bag</NavLink></li>
+                      <li onClick={this.logout}><NavLink to='/' className="text-muted footer-tab">Log out</NavLink></li>
                     </ul>
                     :
                     <ul className="list-unstyled">
-                      <li><div style={{cursor: 'pointer'}} onClick={this.openLoginModal} className="text-muted">Log in</div></li>
-                      <li><div style={{cursor: 'pointer'}} onClick={this.openSignupModal} className="text-muted">Sign up</div></li>
-                      <li><a href='/checkout/sniffBag' className="text-muted">Cart</a></li>
+                      <li><div style={{cursor: 'pointer'}} onClick={this.openLoginModal} className="text-muted footer-tab">Log in</div></li>
+                      <li><div style={{cursor: 'pointer'}} onClick={this.openSignupModal} className="text-muted footer-tab">Sign up</div></li>
+                      <li><NavLink to='/checkout/sniffBag' className="text-muted footer-tab">Cart</NavLink></li>
                     </ul>
                     }
                   </div>
                   <div className="col-lg-2">
                     <h6 className="text-uppercase text-dark mb-3">Tid Bits</h6>
                     <ul className="list-unstyled">
-                      <li><a href="/customize" className="text-muted">Customize</a></li>
-                      <li><a href="/about/how-it-works" className="text-muted">How it works</a></li>
-                      <li><a href="/about/who-we-are" className="text-muted">Our story</a></li>
-                      <li><a href="/contact" className="text-muted">Contact us</a></li>
-                      <li><a href="/feedback" className="text-muted">Leave feedback</a></li>
-                      <li><a href="/" className="text-muted">Home</a></li>
+                      <li><NavLink to="/customize" className="text-muted footer-tab">Customize</NavLink></li>
+                      <li><NavLink to="/about/how-it-works" className="text-muted footer-tab">How it works</NavLink></li>
+                      <li><NavLink to="/about/who-we-are" className="text-muted footer-tab">Our story</NavLink></li>
+                      <li><NavLink to="/contact" className="text-muted footer-tab">Contact us</NavLink></li>
+                      <li><NavLink to="/feedback" className="text-muted footer-tab">Leave feedback</NavLink></li>
+                      <li><NavLink to="/" className="text-muted footer-tab">Home</NavLink></li>
                     </ul>
                   </div>
                   <div className="col-lg-4">

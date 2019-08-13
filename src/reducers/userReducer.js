@@ -9,6 +9,7 @@ const userReducer = (state = null, action) => {
       return action.payload
 
     case 'LOGOUT':
+      // window.location.reload()
       return action.payload
 
 

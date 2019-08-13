@@ -6,6 +6,11 @@ import Fourth from '../components/fourthSection'
 import yellow from '../assets/images/yellowcurve.png'
 
 export default class Home extends Component {
+
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
+
   render(){
     return(
       <div style={{paddingTop: '0px'}}>

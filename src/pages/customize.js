@@ -14,6 +14,7 @@ class Customize extends Component {
   //   layer: 'base'
   // }
   componentDidMount() {
+    window.scrollTo(0,0);
       $('.coupon').css('display', 'none')
   }
   componentWillUnmount() {

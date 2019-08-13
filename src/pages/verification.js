@@ -5,6 +5,10 @@ import {withRouter} from 'react-router'
 
 class Verify extends Component {
 
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
+
   state = {
     email: '',
     temp: '',
@@ -25,8 +29,8 @@ class Verify extends Component {
     }
 
     if (passtest && !this.state.emptyError && !this.state.wrongTemp) {
-      fetch(`http://localhost:3000/users/${this.props.user.id}`, {
-        method: 'PATCH',
+      fetch(`http://localhost:3000/verify`, {
+        method: 'POST',
         headers: {
           "Accepts": "application/json",
           "content-type": "application/json"
