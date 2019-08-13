@@ -5,15 +5,13 @@ import FacebookLogin from 'react-facebook-login';
 import Modal from '../components/modal'
 import {signmeUp, clearErrors} from '../actions/users'
 import {openLogin} from '../actions/modals'
-// import $ from 'jquery'
+import $ from 'jquery'
 
 const responseGoogle = (response) => {
   // console.log(response);
 }
 
-const responseFacebook = (response) => {
-  // console.log(response);
-}
+
 
 class Signup extends Component {
 
@@ -67,6 +65,7 @@ class Signup extends Component {
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       feedback: this.state.feedback,
+      verified: true,
       guest: false
     }, this.props.cart, this.state.emailSignup)
     if (!this.props.signupErrors) {
@@ -89,9 +88,82 @@ class Signup extends Component {
     this.setState({emailSignup: !this.state.emailSignup})
   }
 
-  // submitHandler = () => {
-  //   this.props.signmeUp(this.state)
-  // }
+  responseFacebook = (response) => {
+    console.log(response);
+    if (!response.status) {
+      localStorage.setItem('FB_id', response.accessToken)
+      const fullName = response.name.split(' ')
+      const firstName = fullName[0]
+      const lastName = fullName[1]
+      fetch('http://localhost:3000/oauth', {
+        method: 'POST',
+        headers: {
+          'Accepts': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          user: {
+            email: response.email,
+            first_name: firstName,
+            last_name: lastName,
+            password: response.userID
+          }
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.errors) {
+            // this.setState({error: data.errors})
+            console.log(data.errors);
+          } else {
+            this.props.guestCo(false)
+            // localStorage.setItem('token', data.token)
+            // this.props.login(data.user)
+            console.log(this.props.cart.length);
+            if (this.props.cart.length > 0) {
+              // const localSoap = JSON.parse(localStorage.getItem('recentlyAdded'))
+              this.props.cart.map(localsoap => {
+                fetch('http://localhost:3000/soaps', {
+                  method: 'POST',
+                  headers: {
+                    'Accepts': 'application/json',
+                    'Content-type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    base: localsoap.base,
+                    fragrance1: localsoap.fragrance1,
+                    fragrance2: localsoap.fragrance2,
+                    fragrance3: localsoap.fragrance3,
+                    addon: localsoap.addon,
+                    image: localsoap.image,
+                    quantity: localsoap.quantity,
+                    price: localsoap.price,
+                    user_id: data.user.id,
+                    cart_id: data.user.cart.id
+                    // order_id: null
+                  })
+                }).then(resp => {
+                  localStorage.setItem('token', data.token)
+                  this.props.login(data.user)
+                  // this.props.closeModal()
+                  $('#root').removeClass('modal-overflow')
+
+                })
+              })
+            } else {
+              localStorage.setItem('token', data.token)
+              this.props.login(data.user)
+              // this.props.closeModal()
+              $('#root').removeClass('modal-overflow')
+
+            }
+            // this.props.closeModal()
+            // document.getElementById('root').setAttribute('class', '')
+            // this.props.history.push('/')
+          }
+        })
+      }
+    }
 
   render(){
     return(
@@ -156,11 +228,10 @@ class Signup extends Component {
                     cookiePolicy={'single_host_origin'}
                   />
                   <FacebookLogin
-                  appId="1088597931155576"
+                  appId={process.env.REACT_APP_FB}
                   autoLoad={false}
-                  fields="name,email,picture"
-
-                  callback={responseFacebook} />
+                  fields="name,email"
+                  callback={this.responseFacebook} />
                 </div>
               </div>
             </div>

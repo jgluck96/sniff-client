@@ -116,7 +116,7 @@ export const autoLogin = () => {
     .then(resp => resp.json())
     .then(data => {
       if (data.errors) {
-        alert(data.errors)
+        // alert(data.errors)
       } else {
         // console.log('hhh');
         dispatch({ type: 'LOGIN', payload: data.user })

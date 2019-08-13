@@ -16,10 +16,15 @@ hr {
 
 body {
   counter-reset: second-section;
+  font-family: 'Song Myung', serif;
+  letter-spacing: 0.3px;
   /* font-family: rockwell !important */
 
 }
 
+input {
+  font-family: 'Song Myung', serif !important;
+}
 
 header, footer, nav {
   display: block;
@@ -455,9 +460,11 @@ margin: 0 auto;
 .contact-flex {
   display: flex;
   padding: 20px 0;
+  z-index: 99;
   width: 100%;
   justify-content: space-evenly;
 }
+
 
 .contact-left {
   display: flex;
@@ -629,7 +636,8 @@ header {
   text-decoration: none;
   /* margin: auto; */
   cursor: pointer;
-  font-size: 16px;
+  font-size: 17px;
+  letter-spacing: 0.6px;
   /* height: 35px; */
   display: flex;
   align-items: center;
@@ -640,7 +648,7 @@ header {
   justify-content: center;
   /* border-bottom: 5px solid transparent; */
 
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
 }
 
 
@@ -682,7 +690,18 @@ header {
   border-radius: 4px;
 }
 
+.verify {
+  background: darksalmon;
+font-size: 18px;
+text-align: center;
+padding: 6px;
+color: white;
+box-shadow: 0px -4px 7px 1px rgba(0,0,0,0.70);
+
+}
+
 .nav-signup {
+  font-size: 16px !important;
   color: cornflowerblue !important;
   text-decoration: none;
   border: 1px solid;
@@ -698,6 +717,7 @@ header {
 .nav-login {
   color: cornflowerblue !important;
   text-decoration: none;
+  font-size: 16px !important;
   border: 1px solid;
   width: 70px;
   transition: all .2s;
@@ -800,6 +820,7 @@ header {
 
 .second-section {
   background-color: white;
+  font-family: 'Song Myung', serif;
   height: 560px;
   padding: calc(90px + 90px) 40px 0 40px
 }
@@ -1109,6 +1130,7 @@ label {
 
 .third-section {
   height: 500px;
+  font-family: 'Song Myung', serif;
   background-color: rgb(44, 203, 187);
   margin-top: -8px;
   padding-right: 35px;
@@ -1121,7 +1143,7 @@ label {
   margin-right: auto;
   width: 100%;
   position: relative;
-      background-image: linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.03)) !important;
+      background-image: linear-gradient(180deg, rgba(0,0,255,0.3), rgba(0,0,0,0.03)) !important;
   height: -webkit-fill-available
 }
 
@@ -1156,11 +1178,11 @@ label {
 
 .process-title {
   font-size: 50px;
-  font-family: Mabry-Black, Helvetica, Arial;
+  font-family: 'Song Myung', serif;
   /* font-style: italic; */
   margin-left: 25px;
   /* margin-top: 0; */
-  /* margin-bottom: 0; */
+  margin-bottom: 0;
   /* margin-right: 30px; */
 }
 
@@ -2456,6 +2478,7 @@ left: 17px !important;
 .email-signup {
   margin-top: 16px;
   margin-bottom: 16px;
+  font-family: 'Song Myung', serif;
   position: relative;
   box-sizing: border-box;
   height: 40px;
@@ -2494,10 +2517,21 @@ left: 17px !important;
   text-align: center;
   padding-bottom: 20px
 }
+.signup-error {
+  color: red;
+  text-align: center;
+  padding-bottom: 20px
+}
 
 .modal-content-container {
   padding: 1rem 3rem;
   /* width: 100%; */
+}
+
+.verification span {
+  font-size: 13px;
+  color: red;
+  height: 15px
 }
 
 .signup-form span {
@@ -2519,13 +2553,16 @@ left: 17px !important;
   height: 15px
 }
 
+
+
 .signup-news {
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
+
   line-height: 1.5em;
-  font-family: Mabry-Medium, Helvetica, Arial;
+  font-family: 'Song Myung', serif;
   margin-top: 0px;
   margin-bottom: 0px;
   color: rgb(118, 118, 118);
@@ -3105,6 +3142,7 @@ left: 17px !important;
 .fourth-section {
   background: #FDDFDF;
   margin-top: -65px;
+  font-family: 'Song Myung', serif;
   padding-bottom: 100px;
   display: flex;
   flex-direction: column;
@@ -3524,6 +3562,7 @@ background: white; position: relative; padding: 9px}
 .footer {
   position: relative;
   bottom: 0;
+  font-family: 'Song Myung', serif;
   width: 100%;
 }
 

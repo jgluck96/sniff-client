@@ -6,16 +6,11 @@ import { fetchCart } from '../actions/selections'
 import { guestCo } from '../actions/checkout'
 import {closeModal, openSignup} from '../actions/modals'
 import GoogleLogin from 'react-google-login';
+import pinwheel from '../assets/images/pinwheel.png'
 import FacebookLogin from 'react-facebook-login';
 import $ from 'jquery'
 
-const responseGoogle = (response) => {
-  // console.log(response);
-}
 
-const responseFacebook = (response) => {
-  // console.log(response);
-}
 
 
 
@@ -63,7 +58,8 @@ class Login extends Component {
       .then(res => res.json())
       .then(data => {
         if (data.errors) {
-          this.setState({error: 'The email/password is incorrect.'})
+          console.log(data);
+          this.setState({error: data.errors})
         } else {
           this.props.guestCo(false)
           // localStorage.setItem('token', data.token)
@@ -114,6 +110,87 @@ class Login extends Component {
     }
   }
 
+  responseGoogle = (response) => {
+    // console.log(response);
+  }
+
+  responseFacebook = (response) => {
+    console.log(response);
+    if (!response.status) {
+      localStorage.setItem('FB_id', response.accessToken)
+      const fullName = response.name.split(' ')
+      const firstName = fullName[0]
+      const lastName = fullName[1]
+      fetch('http://localhost:3000/oauth', {
+        method: 'POST',
+        headers: {
+          'Accepts': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          user: {
+            email: response.email,
+            first_name: firstName,
+            last_name: lastName,
+            password: response.userID
+          }
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.errors) {
+            // this.setState({error: data.errors})
+            console.log(data.errors);
+          } else {
+            this.props.guestCo(false)
+            // localStorage.setItem('token', data.token)
+            // this.props.login(data.user)
+            console.log(this.props.cart.length);
+            if (this.props.cart.length > 0) {
+              // const localSoap = JSON.parse(localStorage.getItem('recentlyAdded'))
+              this.props.cart.map(localsoap => {
+                fetch('http://localhost:3000/soaps', {
+                  method: 'POST',
+                  headers: {
+                    'Accepts': 'application/json',
+                    'Content-type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    base: localsoap.base,
+                    fragrance1: localsoap.fragrance1,
+                    fragrance2: localsoap.fragrance2,
+                    fragrance3: localsoap.fragrance3,
+                    addon: localsoap.addon,
+                    image: localsoap.image,
+                    quantity: localsoap.quantity,
+                    price: localsoap.price,
+                    user_id: data.user.id,
+                    cart_id: data.user.cart.id
+                    // order_id: null
+                  })
+                }).then(resp => {
+                  localStorage.setItem('token', data.token)
+                  this.props.login(data.user)
+                  // this.props.closeModal()
+                  $('#root').removeClass('modal-overflow')
+
+                })
+              })
+            } else {
+              localStorage.setItem('token', data.token)
+              this.props.login(data.user)
+              // this.props.closeModal()
+              $('#root').removeClass('modal-overflow')
+
+            }
+            // this.props.closeModal()
+            // document.getElementById('root').setAttribute('class', '')
+            // this.props.history.push('/')
+          }
+        })
+      }
+    }
+
   render(){
     return(
       <Modal>
@@ -124,16 +201,15 @@ class Login extends Component {
               <GoogleLogin
                 clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
                 buttonText="Login"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
                 cookiePolicy={'single_host_origin'}
               />
               <FacebookLogin
-              appId="1088597931155576"
+              appId={process.env.REACT_APP_FB}
               autoLoad={false}
-              fields="name,email,picture"
-
-              callback={responseFacebook} />
+              fields="name,email"
+              callback={this.responseFacebook} />
             </div>
           </div>
         </div>

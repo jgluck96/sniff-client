@@ -10,6 +10,7 @@ import Signup from './pages/signup'
 import Checkout from './pages/checkout'
 import Contact from './pages/contact'
 import OurStory from './pages/ourStory'
+import Verify from './pages/verification'
 import HowItWorks from './pages/howItWorks'
 import Account from './pages/account'
 import MiniBag from './components/miniBag'
@@ -50,7 +51,7 @@ console.log('cdu logged in');
     }
     if (prevState.user !== this.props.user && this.props.user) {
 console.log('maybe');
-      
+
       this.props.fetchCart(this.props.user.id)
     }
   }
@@ -69,6 +70,7 @@ console.log('maybe');
           <Route path='/how-it-works' component={HowItWorks} />
           <Route path='/account' component={Account} />
           <Route path='/feedback' component={Feedback} />
+          <Route path='/verify' component={Verify} />
         </Switch>
         {
           this.props.login ?

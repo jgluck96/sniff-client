@@ -50,6 +50,9 @@ class Nav extends Component {
   logout = () => {
   localStorage.removeItem("token")
   this.props.logout()
+    if (window.FB) {
+      window.FB.logout(localStorage.getItem('FB_id'))
+    }
   }
   //
   // scrollTo = () => {
@@ -159,6 +162,11 @@ class Nav extends Component {
               </ul>
             </div>
           </nav>
+          {this.props.user && !this.props.user.verified ?
+            <div className='verify'>Please verify your account!</div>
+            :
+            <div className='verify'>Please verify your account fake!</div>
+          }
         </header>
       </div>
     )

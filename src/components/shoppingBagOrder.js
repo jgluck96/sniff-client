@@ -73,7 +73,7 @@ class ShoppingBagOrder extends Component {
               last_name: this.props.guestinfo.last_name,
               email: this.props.guestinfo.email,
               phone: this.props.guestinfo.phone,
-
+              verified: false,
               feedback: this.props.guestinfo.feedback,
               guest: true
             })
