@@ -59,6 +59,7 @@ class Model extends Component {
     // https://threejs.org/docs/#examples/controls/OrbitControls
     this.controls = new OrbitControls(this.camera, this.el);
     this.controls.enableZoom = false;
+    this.controls.enableKeys = false;
     this.renderer = new THREE.WebGLRenderer({alpha: true});
 
     this.renderer.setSize(width, height);

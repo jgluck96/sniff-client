@@ -28,6 +28,11 @@ import {withRouter} from 'react-router'
 class App extends Component {
 
   componentDidMount() {
+    $(document).keydown(function(objEvent) {
+      if (objEvent.keyCode == 9) {  //tab pressed
+          objEvent.preventDefault(); // stops its action
+      }
+    })
     if (localStorage.getItem('token')) {
       console.log('checkit cdm');
       this.props.autoLogin()
