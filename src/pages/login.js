@@ -305,11 +305,11 @@ class Login extends Component {
             <span>{this.state.emptyError && !this.state.email ? this.state.emptyError : ''}</span>
           </div>
           <div className='email-column'>
-            <label>Password</label >
+            <label>Password  <span style={{color: '#2ccbbb', fontWeight: '600', borderLeft: '1.5px solid black', paddingLeft: '9px', marginLeft: '3px'}}>  forgot password?</span></label>
             <input value={this.state.password} type='password' className='promo-apply' name='password' onChange={this.handleChange}/>
             <span>{this.state.emptyError && !this.state.password ? this.state.emptyError : ''}</span>
           </div>
-          <button style={{marginTop: '0', marginBottom: '0'}} className='email-signup' onClick={this.handleSubmit}>Log in</button>
+          <button style={{marginTop: '3px', marginBottom: '0'}} className='email-signup' onClick={this.handleSubmit}>Log in</button>
         </div>
         <div className='modal-content-container sign-log'>
           <p>Don't have an account?</p>

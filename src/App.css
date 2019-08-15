@@ -1133,8 +1133,8 @@ label {
   font-family: 'Song Myung', serif;
   background-color: rgb(44, 203, 187);
   margin-top: -8px;
-  padding-right: 35px;
-    padding-left: 35px;
+  /* padding-right: 35px;
+    padding-left: 35px; */
 }
 
 /* CUSTOMIZE */
@@ -1206,7 +1206,12 @@ label {
 }
 .addon-selections {
   height: 370px;
+  overflow-x: scroll;
   text-align: center;
+}
+
+.mw-2 {
+  max-width: 85px
 }
 
 .base-selection {
@@ -1233,7 +1238,7 @@ label {
 
 .frag-selections {
   height: 370px;
-  overflow: scroll;
+  overflow-x: scroll;
   padding-top: 1px;
   text-align: center;
 }
@@ -1472,7 +1477,7 @@ background-color: #F5F5F5;
   position: relative;
   display: flex;
   font-size: 14px;
-  top: -111px;
+  top: -103px;
   transform: translateX(150%);
   transition: transform 1500ms
 }
@@ -1504,7 +1509,7 @@ background-color: #F5F5F5;
 }
 
 .order-price-adjust {
-  width: 50%;
+  width: 49%;
   height: 100%;
   text-align: end;
 }
@@ -1625,17 +1630,7 @@ input[type=number]::-webkit-outer-spin-button {
     /* opacity: .6; */
 }
 
-.info-box {
-  box-shadow: 0px 0px 6px -2px rgba(0,0,0,0.75);
-  background: white;
-  border-radius: 5%;
-  position: absolute;
-  display: none;
-  width: 20%;
-  height: 20%;
-  margin-left: -100px;
-  margin-top: -100px
-}
+
 
 .cart {
 
@@ -1657,13 +1652,38 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
+.info-box {
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 5%;
+  position: absolute;
+  opacity: 0;
+  /* display: none; */
+  width: 20%;
+  z-index: -2;
+  height: 20%;
+  margin-left: -100px;
+  margin-top: -100px
+}
 
+.no-info {
+  opacity: 1
+}
+
+.info-content {
+  opacity: 0
+}
+
+.info-hover:hover .no-info{
+  opacity: 0 !important
+}
 .info-select {
   position: absolute;
   border-radius: 50%;
   border: 1px solid white;
   width: 18px;
   height: 18px;
+  z-index: 99;
   font-weight: bold;
   margin-top: 8px;
   background-color: rgba(0,0,0,0.3);
@@ -1683,7 +1703,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .info-select span{
-  font-family: times
+  font-weight: 400
 }
 
 .selection-image {
@@ -2706,6 +2726,22 @@ left: 17px !important;
 
 }
 
+.slider-next:hover {
+  color: rgba(0,0,0,0.7)
+}
+
+.slider-prev:hover {
+  color: rgba(0,0,0,0.7)
+}
+
+.carousel-wrapper {
+  padding-left: 85px;
+  padding-right: 85px;
+  max-width: 1025px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .shopping-bag-container {
   padding: calc(50px + 50px) 85px 0px 85px
 }
@@ -2806,7 +2842,7 @@ left: 17px !important;
   padding-right: 20px;
   overflow: hidden;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -3006,6 +3042,7 @@ left: 17px !important;
 
 .carousel-checkout {
   flex-direction: column;
+  justify-content: center;
   /* align-items: normal; */
   /* margin-left: 50px;
   margin-right: 50px; */
@@ -3061,19 +3098,19 @@ left: 17px !important;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
   background: white;
   position: relative;
   /* cursor: pointer; */
   border-radius: 5px;
   /* padding: 0 2rem 2rem 2rem; */
-  width: 200px;
+  width: 180px;
   height: 250px;
 }
 
 .carousel-item-co img{
-  height: 110px;
+  height: 100px;
   width: 110px;
   padding: 5px;
   /* margin: 4px 24px 4px 4px; */
@@ -3094,22 +3131,24 @@ left: 17px !important;
 
 .slider-prev {
   position: absolute;
-  left: 10px;
+  left: 80px;
   z-index: 5;
   color: rgba(0,0,0,0.4);
   cursor: pointer;
   font-size: 50px;
-  margin-top: 170px
+  /* margin-top: 170px; */
+  transition: all .23s
 }
 
 .slider-next {
   position: absolute;
-  right: 10px;
+  right: 80px;
   cursor: pointer;
   z-index: 5;
   font-size: 50px;
   color: rgba(0,0,0,0.4);
-  margin-top: 170px
+  /* margin-top: 170px; */
+  transition: all .23s
 
 }
 
@@ -3138,7 +3177,7 @@ left: 17px !important;
   align-items: center;
   font-size: 14px;
   height: 110px;
-  width: 140px;
+  width: 160px;
   /* padding: 28px; */
   /* opacity: 0; */
   transition: all .4s

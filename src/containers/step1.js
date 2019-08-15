@@ -14,8 +14,8 @@ class Step1 extends Component {
         <hr />
         <div className='row base-selections'>
           {
-            [{name: 'Oily skin', img: goat}, {name: 'Normal skin', img: goat}, {name: 'Dry skin', img: goat}].map(obj => {
-              return <Base id={obj.name} key={Math.random()} obj={obj}/>
+            [{name: 'Oily skin', img: goat, ingredients: 'water, lye, olive oil', title: 'oily skin'}, {name: 'Normal skin', img: goat, ingredients: 'water, lye, olive oil, coconut oil', title: 'normal skin'}, {name: 'Dry skin', img: goat, ingredients: 'water, lye, olive oil, coconut oil, castor oil, almond oil', title: 'dry skin'}].map(obj => {
+              return <Base id={obj.name} ingredients={obj.ingredients} title={obj.title} key={Math.random()} obj={obj}/>
             })
           }
         </div>

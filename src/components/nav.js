@@ -138,7 +138,7 @@ class Nav extends Component {
                     <div className='about-dropdown'>
                       <div  className='about-dropdown-content'>
                         <div className='about-tab' style={{borderBottom: '1px solid #ccc'}}><NavLink className='account-dropdown-link' to='/account'><span>Account</span></NavLink></div>
-                        <div className='about-tab'><NavLink className='account-dropdown-link' to='/'><span onClick={this.logout}>Logout</span></NavLink></div>
+                        <div className='about-tab'><a className='account-dropdown-link' href='/'><span onClick={this.logout}>Logout</span></a></div>
                       </div>
                     </div>
 

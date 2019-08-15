@@ -27,9 +27,7 @@ class Checkout extends Component {
           <ShoppingBagOrder errors={this.setErrors}/>
         </div>
       </div>
-      <div style={{paddingLeft: '85px', paddingRight: '85px'}}>
-        <CheckoutCar />
-      </div>
+      <CheckoutCar />
       </Fragment>
     )
   }

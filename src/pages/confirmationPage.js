@@ -13,6 +13,7 @@ class Confirmation extends Component {
   render(){
     return(
       <div style={{paddingTop: '90px'}}>
+      { this.state ?
         <div style={{margin: '50px'}}>
           <h1>Thank you for your order!</h1>
           <div style={{fontSize: '20px'}}>Your order confirmation number is: #{this.state.confirmation}</div>
@@ -20,6 +21,10 @@ class Confirmation extends Component {
           <h3>Shipping Address</h3>
           <div>{this.state.address}</div>
         </div>
+        :
+        <div>404, go buy soap
+        </div>
+      }
         <CheckoutCar />
       </div>
     )

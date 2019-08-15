@@ -12,91 +12,93 @@ import pink from '../assets/images/pink.PNG'
 class CheckoutCar extends Component {
 
   state = {
-    slide: 420,
+    slide: 540,
     others: [{
-      image: pink,
+      image: yellow,
       price: 8.60,
       base: 'Normal Skin',
       scents: 'Vanilla, Rose',
       addon: 'Chamomile'
     }, {
-      image: yellow,
+      image: orange,
       price: 8.60,
       base: 'Dry Skin',
       scents: 'Grapefruit, Sandalwood',
-      addon: 'Fennel'
+      addon: 'carrot'
     }, {
-      image: green,
+      image: red,
       price: 8.60,
       base: 'Oily Skin',
       scents: 'Lime, Sandalwood',
       addon: 'Beet root'
     }, {
-      image: pink,
+      image: purp,
       price: 8.60,
       base: 'Dry Skin',
       scents: 'Grapefruit, Rose',
-      addon: 'Fennel'
+      addon: 'cambrian'
     }, {
       image: green,
       price: 8.60,
       base: 'Oily Skin',
       scents: 'Almond, Peppermint',
-      addon: 'Chamomile'
+      addon: 'alfalfa'
     }, {
-      image: yellow,
+      image: orange,
       price: 8.60,
       base: 'Normal Skin',
       scents: 'Sandalwood, Rose',
-      addon: 'Red clay'
+      addon: 'carrot'
     }, {
-      image: rpurp,
+      image: purp,
       price: 6.80,
       base: 'Oily Skin',
       scents: 'Lavender',
-      addon: 'Chamomile'
+      addon: 'ultramarine'
     }, {
-      image: pink,
+      image: green,
       price: 8.60,
       base: 'Normal Skin',
       scents: 'Sandalwood, Rose',
-      addon: 'Beet root'
+      addon: 'comfrey'
     }, {
-      image: yellow,
+      image: pink,
       price: 8.60,
       base: 'Dry Skin',
       scents: 'Vanilla, Almond',
       addon: 'Red clay'
     }, {
-      image: yellow,
+      image: red,
       price: 6.80,
       base: 'Oily Skin',
       scents: 'Vanilla',
-      addon: 'Fennel'
+      addon: 'beet root'
     }]
   }
 
   next = () => {
     this.setState(prevState => ({
-    slide: prevState.slide -220}))
+    slide: prevState.slide -215}))
   }
   prev = () => this.setState(prevState => ({
-    slide: prevState.slide +220}))
+    slide: prevState.slide +215}))
 
   render(){
     return(
-      <div className='carousel-container carousel-checkout'>
-        <h2>Others Also Loved</h2>
-        {this.state.slide < 379 ? <i onClick={this.prev} class="fas fa-arrow-circle-left slider-prev"></i> : null}
+      <div className='carousel-wrapper'>
+        <div className='carousel-container carousel-checkout'>
+          <h2>Others Also Loved</h2>
+          {this.state.slide < 379 ? <i onClick={this.prev} class="fas fa-arrow-circle-left slider-prev"></i> : null}
 
-        {this.state.slide > -371 ? <i onClick={this.next} class="fas fa-arrow-circle-right slider-next"></i> : null}
+          {this.state.slide > -371 ? <i onClick={this.next} class="fas fa-arrow-circle-right slider-next"></i> : null}
 
-        <div style={{transform: `translate3d(${this.state.slide}px, 0px, 0px)`}} className='carousel-slide'>
-        {
-          this.state.others.map(soap => {
-            return <CarouselItem key={Math.random()} class={'carousel-item-co'} soap={soap}/>
-          })
-        }
+          <div style={{transform: `translate3d(${this.state.slide}px, 0px, 0px)`}} className='carousel-slide'>
+          {
+            this.state.others.map(soap => {
+              return <CarouselItem key={Math.random()} class={'carousel-item-co'} soap={soap}/>
+            })
+          }
+          </div>
         </div>
       </div>
     )
