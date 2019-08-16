@@ -115,8 +115,33 @@ class CheckoutContainer extends Component {
         :
         <Fragment>
         <div className='title' style={{fontWeight: '500'}}>Sniff. Bag ({this.props.cart.length})</div>
-          {this.props.fetchingCart && localStorage.getItem('token')?
-            <div className='loader-bg'><div className='loader'></div></div>
+          {this.props.fetchingCart && localStorage.getItem('token') ?
+            <div className='loader-bg'>
+
+            <div className='loader-spinner'>
+              <div className='loader-top'>
+                <div className=''>
+                </div>
+                <div className=''>
+                </div>
+                <div className=''>
+                </div>
+                <div className=''>
+                </div>
+              </div>
+              <div className='loader-bottom'>
+                <div className=''>
+                </div>
+                <div className=''>
+                </div>
+                <div className=''>
+                </div>
+                <div className=''>
+                </div>
+              </div>
+            </div>
+
+            </div>
             :
             this.props.cart.length > 0 ?
             <Fragment>

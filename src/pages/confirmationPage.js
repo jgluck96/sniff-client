@@ -14,7 +14,7 @@ class Confirmation extends Component {
     return(
       <div style={{paddingTop: '90px'}}>
       { this.state ?
-        <div style={{margin: '50px'}}>
+        <div style={{paddingLeft: '85px', paddingRight: '85px', maxWidth: '1025px'}}>
           <h1>Thank you for your order!</h1>
           <div style={{fontSize: '20px'}}>Your order confirmation number is: #{this.state.confirmation}</div>
           <div>Total: ${(parseFloat(this.state.total)/100).toFixed(2)}</div>
@@ -22,7 +22,7 @@ class Confirmation extends Component {
           <div>{this.state.address}</div>
         </div>
         :
-        <div>404, go buy soap
+        <div style={{padding: '80px'}}>404, go buy soap
         </div>
       }
         <CheckoutCar />

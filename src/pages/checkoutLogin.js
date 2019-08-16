@@ -91,7 +91,7 @@ class CheckoutLogin extends Component {
   render(){
     return(
       <Modal>
-        <div className='modal-content-container'>
+        <div style={{paddingTop: '35px'}} className='modal-content-container'>
           <div className='email-column'>
             <label>Email</label >
             <input className='promo-apply' value={this.state.email} name='email' onChange={this.handleChange}/>
@@ -105,7 +105,7 @@ class CheckoutLogin extends Component {
             <span style={{paddingLeft: '10px', paddingRight: '10px'}} className='third-parties-border'></span>
             <span className='third-parties-border-co'>OR</span>
           </div>
-          <button className='email-signup' style={{marginBottom: '50px'}} onClick={this.guestCo}>Checkout As Guest</button>
+          <button className='email-signup' style={{marginBottom: '30px'}} onClick={this.guestCo}>Checkout As Guest</button>
         </div>
         <div className='modal-content-container sign-log'>
           <p>Don't have an account?</p>

@@ -76,7 +76,7 @@ console.log('maybe');
           <Route path='/order-confirmation' component={Confirmation} />
           <Route path='/about/who-we-are' component={OurStory} />
           <Route path='/contact' component={Contact} />
-          <Route path='/how-it-works' component={HowItWorks} />
+          <Route path='/how-it-works' component={OurStory} />
           <Route path='/account' component={Account} />
           <Route path='/feedback' component={Feedback} />
           <Route path='/verify' component={Verify} />

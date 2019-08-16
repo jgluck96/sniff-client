@@ -88,8 +88,29 @@ class Account extends Component {
       </Fragment>
       :
       <div className='account-load loader-bg'>
-        <div class = "loader">
+      <div className='loader-spinner'>
+        <div className='loader-top'>
+          <div className=''>
+          </div>
+          <div className=''>
+          </div>
+          <div className=''>
+          </div>
+          <div className=''>
+          </div>
         </div>
+        <div className='loader-bottom'>
+          <div className=''>
+          </div>
+          <div className=''>
+          </div>
+          <div className=''>
+          </div>
+          <div className=''>
+          </div>
+        </div>
+      </div>
+        
       </div>
     }
     </Fragment>

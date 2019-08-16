@@ -26,7 +26,7 @@ class OrderItem extends Component {
       })
     })
     // this.setState({soaps})
-    const date = new Date(parseInt('1564840401749')).toDateString().split('')
+    const date = new Date(parseInt(this.props.order.confirmation)).toDateString().split('')
     date[date.length - 5] = ', '
     this.setState({date: date.join('')})
   }

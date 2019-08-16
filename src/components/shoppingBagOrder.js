@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 import {openCheckout} from '../actions/modals'
 import {openPaymentPage} from '../actions/checkout'
+import {updateUser} from '../actions/users'
 import {replaceCart} from '../actions/selections'
 import { PayPalButton } from "react-paypal-button-v2";
 
@@ -180,7 +181,8 @@ class ShoppingBagOrder extends Component {
       }).then(resp => resp.json()).then(order => {
         console.log(order);
         // if (order.ok) {
-          this.props.history.push('/order-confirmation', {confirmation: order.confirmation, address: order.address, total: parseFloat(order.total)*100})
+        this.props.updateUser(order.user)
+          this.props.history.push('/order-confirmation', {confirmation: order.order.confirmation, address: order.order.address, total: parseFloat(order.order.total)*100})
           this.props.replaceCart([])
         // } else {
 
@@ -327,4 +329,4 @@ const mapStateToProps = state => {
     })()
   }
 }
-export default withRouter(connect(mapStateToProps, {openCheckout, openPaymentPage, replaceCart})(ShoppingBagOrder))
+export default withRouter(connect(mapStateToProps, {openCheckout, openPaymentPage, updateUser, replaceCart})(ShoppingBagOrder))

@@ -93,7 +93,7 @@ class Footer extends Component {
                     <h6 className="text-uppercase text-dark mb-3">Tid Bits</h6>
                     <ul className="list-unstyled">
                       <li><NavLink to="/customize" className="text-muted footer-tab">Customize</NavLink></li>
-                      <li><NavLink to="/about/how-it-works" className="text-muted footer-tab">How it works</NavLink></li>
+                      <li><NavLink to="/about/who-we-are" className="text-muted footer-tab">How it works</NavLink></li>
                       <li><NavLink to="/about/who-we-are" className="text-muted footer-tab">Our story</NavLink></li>
                       <li><NavLink to="/contact" className="text-muted footer-tab">Contact us</NavLink></li>
                       <li><NavLink to="/feedback" className="text-muted footer-tab">Leave feedback</NavLink></li>
